@@ -1,6 +1,6 @@
 # finch
 
-[![status: CircleCI](https://circleci.com/gh/mseeley/finch.svg?style=svg)](https://circleci.com/gh/mseeley/finch) [![status: dependencies](https://david-dm.org/mseeley/finch.svg)](https://david-dm.org/mseeley/finch.svg)
+[![status: CircleCI](https://circleci.com/gh/mseeley/finch.svg?style=svg)](https://circleci.com/gh/mseeley/finch) [![status: dependencies](https://david-dm.org/mseeley/finch.svg)](https://david-dm.org/mseeley/finch)
 
 Finch is an observant and nimble monitor.
 
