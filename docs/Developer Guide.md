@@ -87,6 +87,23 @@ See the packages themselves for other tooling instructions.
 
 ## Debugging tips
 
+### Direct development
+
+Run the main script file for `{package}` using `nodemon`. The script file is
+re-ran anytime a `.js` file is changed anywhere below the`packages/` directory.
+
+```
+yarn dev packages/{package}
+```
+
+Same as `yarn dev` although execution will wait until the debugger is connected.
+[This](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27)
+is a good read to get familiar with debugging Node.js.
+
+```
+yarn dev:debug packages/{package}
+```
+
 ### Spec debugging
 
 Unfortunately Jest `--watch` is frustratingly inconsistent when the debugger is involved. This workaround is less graceful but functional.
