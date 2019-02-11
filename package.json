@@ -30,7 +30,7 @@
   "scripts": {
     "all": "yarn lerna exec yarn",
     "lint": "yarn lint:js",
-    "lint:js": "eslint \"**/*.js\" --fix",
+    "lint:js": "eslint \"**/*.js\"",
     "new": "node scripts/create-cli",
     "publish": "lerna publish",
     "test": "jest",

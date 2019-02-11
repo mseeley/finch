@@ -70,11 +70,13 @@ if (process.env.NODE_ENV === "test") {
 
 ### Lint
 
-Lint and fix source files:
+Lint source files:
 
 ```
 yarn lint
 ```
+
+> _Include `--fix` argument to automatically fix lint errors when possible_
 
 Linting and code style are strictly enforced. [Prettier](https://prettier.io) is
 used to format all project files. Pre-commit hooks lint and fix `.js`,
