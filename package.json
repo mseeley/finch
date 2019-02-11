@@ -24,7 +24,7 @@
     "lerna": "^3.10.6",
     "lint-staged": "^8.1.0",
     "parse-package-name": "^0.1.0",
-    "prettier": "1.16.0",
+    "prettier": "1.16.4",
     "validate-npm-package-name": "^3.0.0"
   },
   "scripts": {
