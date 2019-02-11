@@ -10,7 +10,8 @@ Finch is an observant and nimble monitor.
 
 ---
 
-- Coming soon
+- [Developer Guide](docs/Developer%20Guide.md)
+- [Workspace Guide](docs/Workspace%20Guide.md)
 
 ### Contributors
 
