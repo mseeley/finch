@@ -138,7 +138,7 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@commitlint/cli@7.5.2", "@commitlint/cli@^7.5.1":
+"@commitlint/cli@7.5.2", "@commitlint/cli@^7.5.2":
   version "7.5.2"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.5.2.tgz#2475cd8f7ed3b2f9c2ab96c06bc24d61d23f8716"
   integrity sha512-UQdW/wNb+XeANoYYLyuKEDIfWKSzdhJkPQZ8ie/IjfMNnsP+B23bkX4Ati+6U8zgz0yyngoxWl+3lfExiIL4hQ==
@@ -1748,12 +1748,12 @@ commander@~2.17.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commitlint@7.5.1:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/commitlint/-/commitlint-7.5.1.tgz#e6af5518f459f2aff1e06eda3d745854c1576415"
-  integrity sha512-j0iWE9bKlCpM1F9m5FC9wwKwI6++wamWR8XWxDPUflT0d/8cGBf12olHN6wfD/5I0Di2ebiIpPGp2drKzgGcIA==
+commitlint@7.5.2:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/commitlint/-/commitlint-7.5.2.tgz#75ebee72175e451f37132113d410f095ea24c56c"
+  integrity sha512-AnLHmX0E8Y+MulPGOWFwSPG02kKd3GI0daQ7GeJ8blKo+2OrgBRPbnU70vV6rcdz2lwe5pE+shlu8Dx9ftIoxA==
   dependencies:
-    "@commitlint/cli" "^7.5.1"
+    "@commitlint/cli" "^7.5.2"
     read-pkg "3.0.0"
     resolve-pkg "1.0.0"
 
