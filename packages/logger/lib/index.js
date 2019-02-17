@@ -1,15 +1,15 @@
 "use strict";
 
+const path = require("path");
 const { createLogger, format, transports } = require("winston");
 
 const logger = createLogger({
-  // The logger should not be in charge of exiting after an uncaught error.
   exitOnError: false,
   format: format.combine(
     format.timestamp(),
     format.printf(info =>
-      info.prefix
-        ? `${info.timestamp} [${info.prefix}] ${info.level}: ${info.message}`
+      info.label
+        ? `${info.timestamp} [${info.label}] ${info.level}: ${info.message}`
         : `${info.timestamp} ${info.level}: ${info.message}`
     )
   ),
@@ -17,4 +17,16 @@ const logger = createLogger({
   transports: [new transports.Console()]
 });
 
-module.exports = meta => logger.child(meta);
+module.exports = function index(prefix) {
+  let label;
+
+  if (typeof prefix === "string") {
+    const sep = path.sep;
+    const packageDirectory = new RegExp(`${sep}packages${sep}([^${sep}]+)`);
+    const matches = prefix.match(packageDirectory);
+
+    label = (matches && matches[1]) || prefix;
+  }
+
+  return logger.child({ label });
+};
