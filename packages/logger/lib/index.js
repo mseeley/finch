@@ -1,7 +1,7 @@
 "use strict";
 
-const path = require("path");
 const { createLogger, format, transports } = require("winston");
+const { localNameOf } = require("@finch/core");
 
 const logger = createLogger({
   exitOnError: false,
@@ -18,15 +18,7 @@ const logger = createLogger({
 });
 
 module.exports = function index(prefix) {
-  let label;
-
-  if (typeof prefix === "string") {
-    const sep = path.sep;
-    const packageDirectory = new RegExp(`${sep}packages${sep}([^${sep}]+)`);
-    const matches = prefix.match(packageDirectory);
-
-    label = (matches && matches[1]) || prefix;
-  }
+  const label = typeof prefix === "string" && localNameOf(prefix);
 
   return logger.child({ label });
 };
