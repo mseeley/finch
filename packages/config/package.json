@@ -27,7 +27,7 @@
     "@finch/core": "0.0.0",
     "@finch/logger": "0.0.0",
     "@mseeley/export-from": "0.1.1",
-    "chokidar": "2.1.1",
+    "chokidar": "2.1.2",
     "fs-extra": "7.0.1",
     "is-plain-object": "2.0.4",
     "js-yaml": "3.12.1",
