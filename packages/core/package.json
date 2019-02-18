@@ -1,0 +1,29 @@
+{
+  "name": "@finch/core",
+  "private": false,
+  "version": "0.0.0",
+  "description": "Contains responsibilities central to finch subpackages",
+  "author": "Matt Seeley <mattseeley@hotmail.com>",
+  "homepage": "https://github.com/mseeley/finch#readme",
+  "license": "MPL-2.0",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://mseeley@github.com/mseeley/finch.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/mseeley/finch/issues"
+  },
+  "dependencies": {
+    "@mseeley/export-from": "0.1.1"
+  }
+}
