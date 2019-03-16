@@ -8,6 +8,7 @@ async function main() {
   try {
     const settings = await inquirer.prompt([
       questions.packageNameToOrgScopeNotExists,
+      questions.packageDescription,
       questions.isPrivate
     ]);
 

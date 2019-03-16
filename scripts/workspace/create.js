@@ -2,8 +2,10 @@ const path = require("path");
 const fs = require("fs-extra");
 const {
   readPackageJson,
+  readReadme,
   resolvePackage,
-  writePackageJson
+  writePackageJson,
+  writeReadme
 } = require("./helpers");
 
 async function copyTemplate({ packageName }) {
@@ -21,16 +23,33 @@ async function copyTemplate({ packageName }) {
   await fs.remove(path.resolve(package, "node_modules"));
 }
 
-async function updatePackageJson({ isPrivate, packageName }) {
+async function updatePackageJson({
+  isPrivate,
+  packageDescription,
+  packageName
+}) {
   const json = await readPackageJson({ packageName });
 
   json.name = packageName;
+  json.description = packageDescription;
   json.private = isPrivate;
 
   await writePackageJson({ packageName, json });
 }
 
+async function updateReadme({ isPrivate, packageDescription, packageName }) {
+  const tokens = { packageDescription, isPrivate, packageName };
+
+  const data = Object.entries(tokens).reduce(
+    (acc, [token, value]) => acc.replace(`{${token}}`, value),
+    await readReadme({ packageName })
+  );
+
+  await writeReadme({ packageName, data });
+}
+
 module.exports = async settings => {
   await copyTemplate(settings);
   await updatePackageJson(settings);
+  await updateReadme(settings);
 };

@@ -118,7 +118,7 @@ async function validateString(value, answers) {
 
 question("packageName", {
   type: "input",
-  message: `Package:`,
+  message: "Package:",
   filter: [filterSanitizeString],
   validate: [validateString, validatePackageName]
 });
@@ -136,6 +136,13 @@ question("packageNameToOrgScopeExists", {
 question("packageNameToOrgScopeNotExists", {
   extends: "packageNameToOrgScope",
   validate: [validateString, validatePackageName, validatePackageNotExists]
+});
+
+question("packageDescription", {
+  type: "input",
+  message: "Description:",
+  filter: [filterSanitizeString],
+  validate: [validateString]
 });
 
 question("lernaScopeExists", {

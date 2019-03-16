@@ -1,5 +1,3 @@
 "use strict";
 
-module.exports = function helloWorld() {
-  return "Hello world";
-};
+module.exports = require("@mseeley/export-from")(__dirname);
