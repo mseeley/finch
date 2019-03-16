@@ -2,7 +2,7 @@
   "name": "template",
   "private": true,
   "version": "0.0.0",
-  "description": "> TODO: description",
+  "description": "template",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch#readme",
   "license": "MPL-2.0",
@@ -22,5 +22,8 @@
   },
   "bugs": {
     "url": "https://github.com/mseeley/finch/issues"
+  },
+  "dependencies": {
+    "@mseeley/export-from": "0.1.1"
   }
 }
