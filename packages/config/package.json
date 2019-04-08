@@ -30,7 +30,7 @@
     "chokidar": "2.1.5",
     "fs-extra": "7.0.1",
     "is-plain-object": "2.0.4",
-    "js-yaml": "3.13.0",
+    "js-yaml": "3.13.1",
     "rxjs": "6.4.0"
   },
   "devDependencies": {
