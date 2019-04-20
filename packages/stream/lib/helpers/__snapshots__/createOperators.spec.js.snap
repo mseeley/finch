@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stream/lib/helpers/createOperators.spec returns nested stages as flat array of operators 1`] = `
+Array [
+  [Function],
+  [Function],
+  [Function],
+]
+`;

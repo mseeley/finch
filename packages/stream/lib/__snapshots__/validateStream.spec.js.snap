@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stream/lib/validateStream.spec when validating stream \`name\` must have length 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should NOT be shorter than 1 characters",
+    ],
+    "pointer": "/0/name",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating stream \`off\` must have length 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should NOT be shorter than 1 characters",
+    ],
+    "pointer": "/0/off",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating stream \`params\` must have at least one property 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should NOT have fewer than 1 properties",
+    ],
+    "pointer": "/0/params",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating stream \`retryCount\` must be >= 1 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should be >= 1",
+    ],
+    "pointer": "/0/retryCount",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating stream \`retryWait\` must be >= 0 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should be >= 0",
+    ],
+    "pointer": "/0/retryWait",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating stream \`use\` must have length 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should NOT be shorter than 1 characters",
+    ],
+    "pointer": "/0/use",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating stream \`verbose\` must be boolean 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should be boolean",
+    ],
+    "pointer": "/0/verbose",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating structure rejects additional properties on stream 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should NOT have additional properties: pink",
+    ],
+    "pointer": "/0",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating structure reports all errors 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should NOT be shorter than 1 characters",
+    ],
+    "pointer": "/0/use",
+  },
+  Object {
+    "errors": Array [
+      "should NOT be shorter than 1 characters",
+    ],
+    "pointer": "/1/use",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating structure requires \`use\` or \`off\` 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should have required property 'off'",
+      "should have required property 'use'",
+      "should match exactly one schema in oneOf",
+    ],
+    "pointer": "/0",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating structure requires \`use\` or \`off\` 2`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should match exactly one schema in oneOf",
+    ],
+    "pointer": "/0",
+  },
+]
+`;
+
+exports[`stream/lib/validateStream.spec when validating structure requires top-level array contains items 1`] = `
+Array [
+  Object {
+    "errors": Array [
+      "should NOT have fewer than 1 items",
+    ],
+    "pointer": "",
+  },
+]
+`;
