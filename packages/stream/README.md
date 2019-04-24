@@ -237,7 +237,7 @@ module.export = ({ params, value } => {
 
 Sometimes a stage completes successfully yet has no value to yield to the next stage. This is common with filtering operators. In this situation an `empty()` helper is returned.
 
-The operator below will only yield even numbers. Any non-even numbers reaching this operator are then prevented from travelling further down stream.
+The operator below will only yield even numbers. Any non-even numbers reaching this operator are then prevented from traveling further down stream.
 
 ```js
 const { empty } = require("@finch/stream");
