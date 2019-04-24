@@ -3,7 +3,7 @@
 const { localNameOf } = require("@finch/core");
 const index = require("./index");
 
-const expected = ["regexpBlacklist", "regexpWhitelist", "stringReplace"];
+const expected = ["log", "regexpBlacklist", "regexpWhitelist", "stringReplace"];
 
 describe(localNameOf(__filename), () => {
   it("exports only expected members", () => {
