@@ -22,6 +22,7 @@ describe(localNameOf(__filename), () => {
 
   // Atypical operators used for forcing edge cases, bad behaviors, and unusual
   // return values.
+  const asyncAwaitThrow = `${operators}/atypical/async-await-throw`;
   const empty = `${operators}/atypical/empty`;
   const observableNextIfEvenElseError = `${operators}/atypical/observable-next-if-even-else-error`;
   const promiseResolveIdentity = `${operators}/atypical/promise-resolve-identity`;
@@ -268,6 +269,18 @@ describe(localNameOf(__filename), () => {
         expect(spy.mock.calls[0]).toEqual([42]);
         done();
       });
+  });
+
+  it("errors when an async stage throws and continueOnError: false", done => {
+    const operator = createOperator({
+      use: asyncAwaitThrow,
+      continueOnError: false
+    });
+
+    // The operator will always throw.
+    of("meaning of life")
+      .pipe(operator)
+      .subscribe(done.fail, error => done());
   });
 
   it("errors when a stage rejects and continueOnError: false", done => {
