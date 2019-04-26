@@ -2,7 +2,7 @@
 const { localNameOf } = require("@finch/core");
 const index = require("./index");
 
-const expected = ["fixture"];
+const expected = ["fixtures"];
 
 describe(localNameOf(__filename), () => {
   it("exports only expected members", () => {
