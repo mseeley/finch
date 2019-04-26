@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+./inspircd/run/bin/inspircd start

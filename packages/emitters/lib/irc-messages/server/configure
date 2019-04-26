@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cp -f inspircd.conf inspircd/run/conf/inspircd.conf

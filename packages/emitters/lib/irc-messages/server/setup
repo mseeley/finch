@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+BUILD_DIR="inspircd/"
+
+#
+# Exit early if some setup files still exist.
+#
+
+if [ -f VERSION ]
+then
+  CURRENT_VERSION="$(cat VERSION)"
+  echo "Already installed ($CURRENT_VERSION). Please clean first."
+  exit 1
+fi
+
+#
+# Download and unpackage the latest release.
+# From: https://gist.github.com/steinwaywhw/a4cd19cda655b8249d908261a62687f8#gistcomment-2736901
+#
+
+LATEST_RELEASE="$(curl -s "https://api.github.com/repos/inspircd/inspircd/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')"
+
+if [ -z $LATEST_RELEASE ]
+then
+  echo "Unable to retrieve latest release."
+  exit 1
+fi
+
+echo Downloading "$LATEST_RELEASE"...
+ARCHIVE="$LATEST_RELEASE.tar.gz"
+curl -sOL "https://github.com/inspircd/inspircd/archive/$ARCHIVE"
+echo Unpacking "$ARCHIVE"...
+tar -xf "$ARCHIVE"
+mv inspircd*/ "$BUILD_DIR"
+
+#
+# Installing from source, this may fail. If it does re-run setup from scratch.
+# See: https://wiki.inspircd.org/Installation_From_Source
+#
+
+if [ -n "$(command -v brew)" ]
+then
+  # Building fails to find OpenSSL, using `pkg-config --exists openssl`, on
+  # macOS Mojave when OpenSSL is installed with Brew. The workaround below will
+  # create the necessary PKG_CONFIG_PATH value for the above pkg-config command
+  # to succeed.
+
+  # Example: /usr/local/Cellar/openssl/1.0.2q/lib/pkgconfig/libssl.pc
+  LIBSSL_FILE=$(brew list openssl | grep libssl.pc)
+  LIBSSL_DIR=$(dirname "$LIBSSL_FILE")
+  PKG_CONFIG_PATH="PKG_CONFIG_PATH=$LIBSSL_DIR/"
+
+  CONFIGURE="$PKG_CONFIG_PATH ./configure"
+  MAKE="$PKG_CONFIG_PATH make"
+else
+  CONFIGURE="./configure"
+  MAKE="make"
+fi
+
+echo Beginning installation from source...
+cat <<EOF
+Tips:
+  - Abort and address if OpenSSL is not found.
+  - Accept ALL defauls. EXCEPT, enter 'y' at all SSL confirmation prompts.
+  - Generating less secure dhparams is very fast while secure dhparams is very slow.
+  - Retry as necessary until all steps progress smoothly.
+EOF
+read -p "Press Enter to start interactive configure."
+
+pushd . > /dev/null
+cd "$BUILD_DIR"
+eval "$CONFIGURE"
+cp -f ../inspircd.conf ./run/conf/inspircd.conf
+eval "$MAKE"
+make install
+popd > /dev/null
+
+#
+# Build is complete. Perform final housekeeping steps.
+#
+
+echo "Finalizing build..."
+echo $LATEST_RELEASE > VERSION
+echo "Removing temporary files..."
+rm "$ARCHIVE"
+echo "Setup complete $LATEST_RELEASE"
