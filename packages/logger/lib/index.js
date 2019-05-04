@@ -1,5 +1,7 @@
 "use strict";
 
+// FIXME: can this use callsite to avoid child loggers?
+
 const { createLogger, format, transports } = require("winston");
 const { localNameOf } = require("@finch/core");
 
