@@ -11,8 +11,8 @@ See `inspircd.conf` for an overview of development server configuration.
 - Use Brew to install OpenSSL.
 - Run `./setup`.
   - This script attempts to workaround trouble detecting libssl. Review other
-    alternatives in https://github.com/varnish/hitch/issues/246 if the workaround
-    fails for you.
+    alternatives in https://github.com/varnish/hitch/issues/246 if the\
+    workaround fails for you.
 - Before running `./setup` again you'll want to run `./clean` to remove a
   previous installation.
 

@@ -269,6 +269,34 @@ module.exports = ({ params, value }) => {
 };
 ```
 
+#### Always handle errors responsibly
+
+Responsible error handling is doing your best to capture errors within a stage and communicate to the subscriber through `subscriber.error` or `Promise.reject`. Unhandled exceptions can terminate the entire Node.js process!
+
+Stages sometimes communicate validation or other non-exception errors. Whenever doing so it's important that a stage provides the subscriber with an instance of `Error`. This ensures a callstack is available with an indiciation of file that experienced the error. 
+
+Putting it all together within an imaginary `my-operator` stage:
+```js
+module.exports = ({ params, value }) => {
+  return new Promise((resolve, reject) => {
+    // Always handle errors!
+    try {
+      const { firstName } = params;
+  
+      if (!firstName || typeof firstName !== 'string') {
+        reject(new Error("'firstName' must be a non-empty string"));
+      } else {
+        resolve(thisFunctionMightThrow(firstName));
+      }
+    } catch (error) {
+      console.error("my-operator experienced an unexpected error");
+      
+      return reject(error);
+    }
+  });
+};
+```
+
 ### Using stream context
 
 All stages share a global _immutable_ `context` object. The `context` allows stream authors to provide environment configuration or dependencies to stages. Below is an example of providing a logger to an imaginary emitter.
