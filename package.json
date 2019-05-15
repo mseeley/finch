@@ -21,7 +21,7 @@
     "husky": "2.2.0",
     "inquirer": "6.3.1",
     "jest": "24.8.0",
-    "lerna": "3.13.4",
+    "lerna": "3.14.0",
     "lint-staged": "8.1.6",
     "nodemon": "1.19.0",
     "parse-package-name": "0.1.0",
