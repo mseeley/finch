@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
+  "additionalProperties": false,
   "definitions": {
     "stringWithLength": {
       "minLength": 1,
@@ -39,6 +40,10 @@
       "type": "boolean"
     },
     "dangerousInsecure": {
+      "default": false,
+      "type": "boolean"
+    },
+    "debug": {
       "default": false,
       "type": "boolean"
     },

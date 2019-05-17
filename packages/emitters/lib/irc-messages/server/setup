@@ -61,7 +61,7 @@ echo Beginning installation from source...
 cat <<EOF
 Tips:
   - Abort and address if OpenSSL is not found.
-  - Accept ALL defauls. EXCEPT, enter 'y' at all SSL confirmation prompts.
+  - Accept ALL defaults. EXCEPT, enter 'y' at all SSL confirmation prompts.
   - Generating less secure dhparams is very fast while secure dhparams is very slow.
   - Retry as necessary until all steps progress smoothly.
 EOF

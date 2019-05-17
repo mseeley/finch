@@ -31,6 +31,7 @@
     "irc-framework": "4.2.0",
     "irc-upd": "0.10.0",
     "ircmessageparser": "2.1.1",
+    "lodash.clonedeep": "4.5.0",
     "rxjs": "6.5.3"
   }
 }
