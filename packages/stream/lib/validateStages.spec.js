@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 const { localNameOf } = require("@finch/core");
-const validateStream = require("./validateStream");
+const validateStages = require("./validateStages");
 
 describe(localNameOf(__filename), () => {
   const use = "module-id";
@@ -11,127 +11,127 @@ describe(localNameOf(__filename), () => {
     it("accepts composite stream", () => {
       const stream = [{ use }, [{ use }, [{ use }]]];
 
-      expect(validateStream(stream)).toBeNull();
+      expect(validateStages(stream)).toBeNull();
     });
 
     it("requires `use` or `off`", () => {
-      expect(validateStream([{}])).toMatchSnapshot();
+      expect(validateStages([{}])).toMatchSnapshot();
 
-      expect(validateStream([{ use, off }])).toMatchSnapshot();
+      expect(validateStages([{ use, off }])).toMatchSnapshot();
     });
 
     it("requires top-level array contains items", () => {
-      expect(validateStream([])).toMatchSnapshot();
+      expect(validateStages([])).toMatchSnapshot();
     });
 
     it("rejects additional properties on stream", () => {
-      expect(validateStream([{ use, pink: "elephants" }])).toMatchSnapshot();
+      expect(validateStages([{ use, pink: "elephants" }])).toMatchSnapshot();
     });
 
     it("reports all errors", () => {
-      expect(validateStream([{ use: "" }, { use: "" }])).toMatchSnapshot();
+      expect(validateStages([{ use: "" }, { use: "" }])).toMatchSnapshot();
     });
   });
 
   describe("when validating stream `name`", () => {
     it("is optional", () => {
-      expect(validateStream([{ use }])).toBeNull();
+      expect(validateStages([{ use }])).toBeNull();
     });
 
     it("accepts a string", () => {
-      expect(validateStream([{ use, name: "my-name" }])).toBeNull();
+      expect(validateStages([{ use, name: "my-name" }])).toBeNull();
     });
 
     it("must have length", () => {
-      expect(validateStream([{ use, name: "" }])).toMatchSnapshot();
+      expect(validateStages([{ use, name: "" }])).toMatchSnapshot();
     });
   });
 
   describe("when validating stream `off`", () => {
     it("is optional", () => {
       // `off` is optional when `use` is is provided.
-      expect(validateStream([{ use }])).toBeNull();
+      expect(validateStages([{ use }])).toBeNull();
     });
 
     it("accepts a string", () => {
-      expect(validateStream([{ off }])).toBeNull();
+      expect(validateStages([{ off }])).toBeNull();
     });
 
     it("must have length", () => {
-      expect(validateStream([{ off: "" }])).toMatchSnapshot();
+      expect(validateStages([{ off: "" }])).toMatchSnapshot();
     });
   });
 
   describe("when validating stream `params`", () => {
     it("is optional", () => {
-      expect(validateStream([{ use }])).toBeNull();
+      expect(validateStages([{ use }])).toBeNull();
     });
 
     it("accepts an object", () => {
-      expect(validateStream([{ use, params: { a: 1 } }])).toBeNull();
+      expect(validateStages([{ use, params: { a: 1 } }])).toBeNull();
     });
 
     it("must have at least one property", () => {
-      expect(validateStream([{ use, params: {} }])).toMatchSnapshot();
+      expect(validateStages([{ use, params: {} }])).toMatchSnapshot();
     });
   });
 
   describe("when validating stream `retryCount`", () => {
     it("is optional", () => {
-      expect(validateStream([{ use }])).toBeNull();
+      expect(validateStages([{ use }])).toBeNull();
     });
 
     it("accepts a number", () => {
-      expect(validateStream([{ use, retryCount: 100 }])).toBeNull();
+      expect(validateStages([{ use, retryCount: 100 }])).toBeNull();
     });
 
     it("must be >= 1", () => {
-      expect(validateStream([{ use, retryCount: 1 }])).toBeNull();
-      expect(validateStream([{ use, retryCount: 0 }])).toMatchSnapshot();
+      expect(validateStages([{ use, retryCount: 1 }])).toBeNull();
+      expect(validateStages([{ use, retryCount: 0 }])).toMatchSnapshot();
     });
   });
 
   describe("when validating stream `retryWait`", () => {
     it("is optional", () => {
-      expect(validateStream([{ use }])).toBeNull();
+      expect(validateStages([{ use }])).toBeNull();
     });
 
     it("accepts a number", () => {
-      expect(validateStream([{ use, retryWait: 100 }])).toBeNull();
+      expect(validateStages([{ use, retryWait: 100 }])).toBeNull();
     });
 
     it("must be >= 0", () => {
-      expect(validateStream([{ use, retryWait: 0 }])).toBeNull();
-      expect(validateStream([{ use, retryWait: -1 }])).toMatchSnapshot();
+      expect(validateStages([{ use, retryWait: 0 }])).toBeNull();
+      expect(validateStages([{ use, retryWait: -1 }])).toMatchSnapshot();
     });
   });
 
   describe("when validating stream `use`", () => {
     it("is optional", () => {
       // `use` is optional when `off` is is provided.
-      expect(validateStream([{ off }])).toBeNull();
+      expect(validateStages([{ off }])).toBeNull();
     });
 
     it("accepts a string", () => {
-      expect(validateStream([{ use }])).toBeNull();
+      expect(validateStages([{ use }])).toBeNull();
     });
 
     it("must have length", () => {
-      expect(validateStream([{ use: "" }])).toMatchSnapshot();
+      expect(validateStages([{ use: "" }])).toMatchSnapshot();
     });
   });
 
   describe("when validating stream `verbose`", () => {
     it("is optional", () => {
-      expect(validateStream([{ use }])).toBeNull();
+      expect(validateStages([{ use }])).toBeNull();
     });
 
     it("accepts a boolean", () => {
-      expect(validateStream([{ use, verbose: true }])).toBeNull();
+      expect(validateStages([{ use, verbose: true }])).toBeNull();
     });
 
     it("must be boolean", () => {
-      expect(validateStream([{ use, verbose: "true" }])).toMatchSnapshot();
+      expect(validateStages([{ use, verbose: "true" }])).toMatchSnapshot();
     });
   });
 });
