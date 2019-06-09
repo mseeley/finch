@@ -12,9 +12,9 @@ const {
 } = require("@finch/stream");
 ```
 
-- `createStream(Object[])`: Creates the stream RxJS `Observable` from a stream's stage definitions.
-- `empty()`: This special return value is used by stages to indicate they have completed successfully but have no value to yield. The retur value from `empty()` should be treated as an opaque token.
-- `validateStages(Object[])`: Validates a stream's stage definitions. Returns `null` if the stream validated successfully. Otherwise it returns an array of error information.
+- `createStream(stages:Object[], context:Object)`: Creates the stream RxJS `Observable` from a stream's stage definitions. The `context` object is optional.
+- `empty()`: This special return value is used by stages to indicate they have completed successfully but have no value to yield. The return value from `empty()` should be treated as an opaque token.
+- `validateStages(stages:Object[])`: Validates a stream's stage definitions. Returns `null` if the stages pass validation. Otherwise an array of error information is returned.
 
 ## Overview
 
@@ -267,7 +267,40 @@ module.exports = ({ params, value }) => {
     }
   });
 };
+```
 
+### Using stream context
+
+All stages share a global _immutable_ `context` object. The `context` allows stream authors to provide environment configuration or dependencies to stages. Below is an example of providing a logger to an imaginary emitter.
+
+First the `context` object is declared and provided as the second argument to `createStream()`:
+
+```js
+const stages = [{ use: "hello-world-emitter" }];
+const context = { log(...args) { console.log(...args); } };
+const stream$ = createStream(stages, context);
+```
+
+Next the imaginary `hello-world-emitter` operator can consume the context:
+
+```js
+const { of } = require("rxjs");
+const { tap } = require("rxjs/operators");
+
+module.exports = ({ params, context }) => {
+  const { fixture, interval: intervalMs = 1000 } = params;
+
+  return of("Hello World")
+    .pipe(
+      tap((v) => { context.log("hello-world-emitter provided '%s'", v); })
+    );
+};
+```
+
+Later when `stream$` has a subscriber you'll see the following message in the terminal:
+
+```
+hello-world-emitter provided 'Hello World'
 ```
 
 ### Convention and flexibility

@@ -6,6 +6,11 @@ const { take } = require("rxjs/operators");
 const createOperator = require("./createOperator");
 
 describe(localNameOf(__filename), () => {
+  // createOperator depends on createStream to provide an empty context object.
+  // This object is provided manually so createOperator run as it would normally
+  // execute.
+  const context = {};
+
   const emitters = `./__fixtures__/emitters`;
   const transmitters = `./__fixtures__/transmitters`;
   const operators = `./__fixtures__/operators`;
@@ -34,24 +39,24 @@ describe(localNameOf(__filename), () => {
 
   it("creates a pure operator from a stage", () => {
     const stage = { use: empty };
-    const operator = createOperator(stage);
+    const operator = createOperator(stage, context);
 
     expect(typeof operator).toBe("function");
   });
 
   it("creates a unique pure operator from a stage", () => {
     const stage = { use: empty };
-    const operatorA = createOperator(stage);
-    const operatorB = createOperator(stage);
+    const operatorA = createOperator(stage, context);
+    const operatorB = createOperator(stage, context);
 
     expect(operatorA).not.toBe(operatorB);
   });
 
   it("provides stage factory default empty params", done => {
     // The stage provides no parameters to the operator.
-    const operator = createOperator({ use: promiseResolveIdentity });
+    const operator = createOperator({ use: promiseResolveIdentity }, context);
     const value = undefined;
-    const expected = { value, params: {} };
+    const expected = { value, params: {}, context };
 
     of(value)
       .pipe(operator)
@@ -61,7 +66,10 @@ describe(localNameOf(__filename), () => {
   it("is immune to params changes after creating operator", done => {
     const params = { a: true, b: { c: {}, d: {} } };
     const expected = { a: true, b: { c: {}, d: {} } };
-    const operator = createOperator({ use: promiseResolveIdentity, params });
+    const operator = createOperator(
+      { use: promiseResolveIdentity, params },
+      context
+    );
 
     // Delete a shallow property.
     delete params.a;
@@ -86,7 +94,10 @@ describe(localNameOf(__filename), () => {
 
   it("provides the operator with deep copy of params", done => {
     const params = { a: true, b: { c: {}, d: {} } };
-    const operator = createOperator({ use: promiseResolveIdentity, params });
+    const operator = createOperator(
+      { use: promiseResolveIdentity, params },
+      context
+    );
 
     of(undefined)
       .pipe(operator)
@@ -104,10 +115,13 @@ describe(localNameOf(__filename), () => {
   it("provides operators with an immutable params object", done => {
     const params = { evil: false };
     const expected = { evil: false };
-    const operator = createOperator({
-      use: promiseResolveIdentityMutateParams,
-      params
-    });
+    const operator = createOperator(
+      {
+        use: promiseResolveIdentityMutateParams,
+        params
+      },
+      context
+    );
 
     of(undefined)
       .pipe(operator)
@@ -121,7 +135,10 @@ describe(localNameOf(__filename), () => {
   it("provides operators with an immmutable value object", done => {
     const value = { evil: false };
     const expected = { evil: false };
-    const operator = createOperator({ use: promiseResolveValueMutateValue });
+    const operator = createOperator(
+      { use: promiseResolveValueMutateValue },
+      context
+    );
 
     of(value)
       .pipe(operator)
@@ -131,11 +148,14 @@ describe(localNameOf(__filename), () => {
   it("provides the operator with an immutable argument object", done => {
     const value = undefined;
     const params = {};
-    const expected = { value, params };
-    const operator = createOperator({
-      use: promiseResolveIdentityMutateIdentity,
-      params
-    });
+    const expected = { value, params, context };
+    const operator = createOperator(
+      {
+        use: promiseResolveIdentityMutateIdentity,
+        params
+      },
+      context
+    );
 
     of(value)
       .pipe(operator)
@@ -145,7 +165,10 @@ describe(localNameOf(__filename), () => {
   it("can create an emitter", done => {
     const spy = jest.fn();
     const interval = 100;
-    const operator = createOperator({ use: numbers, params: { interval } });
+    const operator = createOperator(
+      { use: numbers, params: { interval } },
+      context
+    );
 
     jest.useFakeTimers();
 
@@ -173,10 +196,13 @@ describe(localNameOf(__filename), () => {
 
   it("can create a transmitter", done => {
     const spy = jest.fn();
-    const operator = createOperator({
-      use: stringSplit,
-      params: { glue: "," }
-    });
+    const operator = createOperator(
+      {
+        use: stringSplit,
+        params: { glue: "," }
+      },
+      context
+    );
 
     // A transmitter accepts an input value then emits 0 or more values before
     // completing.
@@ -195,8 +221,11 @@ describe(localNameOf(__filename), () => {
     // use case is well supported by the API.
     of("a,b")
       .pipe(
-        createOperator({ use: stringSplit, params: { glue: "," } }),
-        createOperator({ use: stringConcatTimes, params: { times: 2 } })
+        createOperator({ use: stringSplit, params: { glue: "," } }, context),
+        createOperator(
+          { use: stringConcatTimes, params: { times: 2 } },
+          context
+        )
       )
       .subscribe(spy, done.fail, () => {
         expect(spy.mock.calls).toEqual([["aa"], ["aaa"], ["bb"], ["bbb"]]);
@@ -205,7 +234,7 @@ describe(localNameOf(__filename), () => {
   });
 
   it("forwards a Promise stage's return value", done => {
-    const operator = createOperator({ use: promiseResolve });
+    const operator = createOperator({ use: promiseResolve }, context);
     const value = 42;
 
     of(value)
@@ -214,7 +243,7 @@ describe(localNameOf(__filename), () => {
   });
 
   it("forwards an async/await stage's return value", done => {
-    const operator = createOperator({ use: asyncAwaitResolve });
+    const operator = createOperator({ use: asyncAwaitResolve }, context);
     const value = 42;
 
     of(value)
@@ -223,7 +252,7 @@ describe(localNameOf(__filename), () => {
   });
 
   it("forwards an Observable stage's return value", done => {
-    const operator = createOperator({ use: observableNext });
+    const operator = createOperator({ use: observableNext }, context);
     const value = 42;
 
     of(value)
@@ -232,7 +261,10 @@ describe(localNameOf(__filename), () => {
   });
 
   it("swallows `empty()` return values from operators", done => {
-    const operator = createOperator({ use: promiseResolveIfEvenElseEmpty });
+    const operator = createOperator(
+      { use: promiseResolveIfEvenElseEmpty },
+      context
+    );
     const spy = jest.fn();
 
     of(0, 1, 2, 3, 4)
@@ -244,7 +276,10 @@ describe(localNameOf(__filename), () => {
   });
 
   it("can continue without retry when a Promise stage rejects", done => {
-    const operator = createOperator({ use: promiseResolveIfEvenElseReject });
+    const operator = createOperator(
+      { use: promiseResolveIfEvenElseReject },
+      context
+    );
     const spy = jest.fn();
 
     // The operator will reject the first value and resolve the second.
@@ -258,7 +293,10 @@ describe(localNameOf(__filename), () => {
   });
 
   it("can continue when an Observable stage errors", done => {
-    const operator = createOperator({ use: observableNextIfEvenElseError });
+    const operator = createOperator(
+      { use: observableNextIfEvenElseError },
+      context
+    );
     const spy = jest.fn();
 
     // The operator will error the first value and next the second.
@@ -272,10 +310,13 @@ describe(localNameOf(__filename), () => {
   });
 
   it("errors when an async stage throws and continueOnError: false", done => {
-    const operator = createOperator({
-      use: asyncAwaitThrow,
-      continueOnError: false
-    });
+    const operator = createOperator(
+      {
+        use: asyncAwaitThrow,
+        continueOnError: false
+      },
+      context
+    );
 
     // The operator will always throw.
     of("meaning of life")
@@ -284,10 +325,13 @@ describe(localNameOf(__filename), () => {
   });
 
   it("errors when a stage rejects and continueOnError: false", done => {
-    const operator = createOperator({
-      use: promiseResolveIfEvenElseReject,
-      continueOnError: false
-    });
+    const operator = createOperator(
+      {
+        use: promiseResolveIfEvenElseReject,
+        continueOnError: false
+      },
+      context
+    );
 
     // The operator will reject the non-even value.
     of("meaning of life")
@@ -300,11 +344,14 @@ describe(localNameOf(__filename), () => {
     const spy = jest.fn();
     const retryCount = 2;
     const retryWait = 0;
-    const operator = createOperator({
-      use: spyPromiseResolveIfEvenElseReject,
-      retryCount,
-      retryWait
-    });
+    const operator = createOperator(
+      {
+        use: spyPromiseResolveIfEvenElseReject,
+        retryCount,
+        retryWait
+      },
+      context
+    );
 
     jest.useRealTimers();
 
@@ -316,10 +363,10 @@ describe(localNameOf(__filename), () => {
         expect(operatorSpy.mock.calls).toEqual([
           // Retrying doesn't guarantee order, new values may be provided to the
           // operator while the retry is waiting to act.
-          [{ params: {}, value: "meaning of life" }],
-          [{ params: {}, value: 42 }],
-          [{ params: {}, value: "meaning of life" }],
-          [{ params: {}, value: "meaning of life" }]
+          [{ context, params: {}, value: "meaning of life" }],
+          [{ context, params: {}, value: 42 }],
+          [{ context, params: {}, value: "meaning of life" }],
+          [{ context, params: {}, value: "meaning of life" }]
         ]);
 
         done();
