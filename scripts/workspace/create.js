@@ -5,7 +5,7 @@ const {
   readReadme,
   resolvePackage,
   writePackageJson,
-  writeReadme
+  writeReadme,
 } = require("./helpers");
 
 async function copyTemplate({ packageName }) {
@@ -26,7 +26,7 @@ async function copyTemplate({ packageName }) {
 async function updatePackageJson({
   isPrivate,
   packageDescription,
-  packageName
+  packageName,
 }) {
   const json = await readPackageJson({ packageName });
 

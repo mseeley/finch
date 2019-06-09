@@ -3,7 +3,7 @@ const {
   hasOrgScope,
   findPackagesInScope,
   getOrgScopeAll,
-  toOrgScope
+  toOrgScope,
 } = require("./helpers");
 
 // Factories
@@ -120,29 +120,29 @@ question("packageName", {
   type: "input",
   message: "Package:",
   filter: [filterSanitizeString],
-  validate: [validateString, validatePackageName]
+  validate: [validateString, validatePackageName],
 });
 
 question("packageNameToOrgScope", {
   extends: "packageName",
-  filter: [filterSanitizeString, filterTryToOrgScope]
+  filter: [filterSanitizeString, filterTryToOrgScope],
 });
 
 question("packageNameToOrgScopeExists", {
   extends: "packageNameToOrgScope",
-  validate: [validateString, validatePackageName, validatePackageExists]
+  validate: [validateString, validatePackageName, validatePackageExists],
 });
 
 question("packageNameToOrgScopeNotExists", {
   extends: "packageNameToOrgScope",
-  validate: [validateString, validatePackageName, validatePackageNotExists]
+  validate: [validateString, validatePackageName, validatePackageNotExists],
 });
 
 question("packageDescription", {
   type: "input",
   message: "Description:",
   filter: [filterSanitizeString],
-  validate: [validateString]
+  validate: [validateString],
 });
 
 question("lernaScopeExists", {
@@ -150,7 +150,7 @@ question("lernaScopeExists", {
   name: "scope",
   message: `Scope:`,
   default: getOrgScopeAll,
-  validate: [validateString, validateLernaScope]
+  validate: [validateString, validateLernaScope],
 });
 
 question("confirmPackageName", {
@@ -159,8 +159,8 @@ question("confirmPackageName", {
   filter: [filterSanitizeString],
   validate: [
     validateString,
-    async (value, answers) => value === answers.packageName
-  ]
+    async (value, answers) => value === answers.packageName,
+  ],
 });
 
 // Confirm
@@ -168,5 +168,5 @@ question("confirmPackageName", {
 question("isPrivate", {
   type: "confirm",
   message: "Private package?",
-  default: false
+  default: false,
 });

@@ -9,7 +9,7 @@ async function main() {
     const settings = await inquirer.prompt([
       questions.packageNameToOrgScopeNotExists,
       questions.packageDescription,
-      questions.isPrivate
+      questions.isPrivate,
     ]);
 
     await create(settings);
