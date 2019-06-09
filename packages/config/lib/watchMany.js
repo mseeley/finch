@@ -10,7 +10,7 @@ module.exports = function watchMany({
   dirname,
   glob,
   logger,
-  stabilityThreshold = 1000
+  stabilityThreshold = 1000,
 }) {
   assert(path.isAbsolute(dirname), `"${dirname}" is not an absolute path`);
 
@@ -67,7 +67,7 @@ module.exports = function watchMany({
     const options = {
       atomic: true,
       awaitWriteFinish: { stabilityThreshold },
-      persistent: true
+      persistent: true,
     };
 
     logger.debug(`Preparing to watch: ${pattern}`);

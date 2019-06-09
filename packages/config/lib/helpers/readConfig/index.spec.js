@@ -14,7 +14,7 @@ describe(localNameOf(__filename), () => {
       const data = await readFile({ filename });
       const expected = {
         filename,
-        data: { hello: "world" }
+        data: { hello: "world" },
       };
 
       expect(data).toEqual(expected);
@@ -29,7 +29,7 @@ describe(localNameOf(__filename), () => {
       const data = await readFile({ filename });
       const expected = {
         filename,
-        data: null
+        data: null,
       };
 
       expect(data).toEqual(expected);
@@ -44,7 +44,7 @@ describe(localNameOf(__filename), () => {
       const data = await readFile({ filename });
       const expected = {
         filename,
-        data: null
+        data: null,
       };
 
       expect(data).toEqual(expected);
@@ -54,7 +54,7 @@ describe(localNameOf(__filename), () => {
   test.each([
     "invalid-syntax.json",
     "invalid-syntax.yaml",
-    "invalid-syntax.yml"
+    "invalid-syntax.yml",
   ])("throws when configuration has invalid syntax: %s", async file => {
     let error;
 
@@ -83,7 +83,7 @@ describe(localNameOf(__filename), () => {
 
     const expected = {
       filename,
-      data: null
+      data: null,
     };
 
     expect(data).toEqual(expected);

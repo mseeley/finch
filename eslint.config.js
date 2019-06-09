@@ -7,7 +7,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2017,
     impliedStrict: true,
-    sourceType: "script"
+    sourceType: "script",
   },
 
   plugins: ["import", "prettier"],
@@ -15,7 +15,7 @@ module.exports = {
   env: {
     commonjs: true,
     es6: true,
-    node: true
+    node: true,
   },
 
   rules: {
@@ -38,10 +38,10 @@ module.exports = {
           "internal",
           "parent",
           "sibling",
-          "index"
+          "index",
         ],
-        "newlines-between": "never"
-      }
+        "newlines-between": "never",
+      },
     ],
     "linebreak-style": ["error", "unix"],
     "no-alert": 0,
@@ -76,7 +76,7 @@ module.exports = {
     "no-unneeded-ternary": "error",
     "no-unused-vars": [
       "error",
-      { vars: "all", args: "none", ignoreRestSiblings: true }
+      { vars: "all", args: "none", ignoreRestSiblings: true },
     ],
     "no-useless-call": "error",
     "no-useless-concat": "error",
@@ -85,6 +85,6 @@ module.exports = {
     "prefer-const": "error",
     "prettier/prettier": "error",
     radix: "error",
-    yoda: "error"
-  }
+    yoda: "error",
+  },
 };

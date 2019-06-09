@@ -11,7 +11,7 @@ function formatOf(filename) {
 const parsers = {
   json: contents => JSON.parse(contents),
   yml: contents => yaml.safeLoad(contents, { json: true }),
-  yaml: contents => yaml.safeLoad(contents, { json: true })
+  yaml: contents => yaml.safeLoad(contents, { json: true }),
 };
 
 /**
@@ -79,6 +79,6 @@ module.exports = async function({ filename, sync = false }) {
 
   return {
     data: Object.keys(data).length ? data : null,
-    filename
+    filename,
   };
 };

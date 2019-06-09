@@ -13,7 +13,7 @@ function reduceErrors(errors) {
       error.keyword === KEYWORD_ADDITIONAL_PROPERTIES
         ? {
             ...error,
-            message: `${error.message}: ${error.params.additionalProperty}`
+            message: `${error.message}: ${error.params.additionalProperty}`,
           }
         : error
     )
@@ -23,7 +23,7 @@ function reduceErrors(errors) {
       if (!errorAtPointer) {
         errorAtPointer = {
           pointer: error.dataPath,
-          errors: []
+          errors: [],
         };
 
         acc.push(errorAtPointer);

@@ -22,11 +22,12 @@ module.exports = function createOperator(stage, context) {
     retryWait >= 0 &&
     retryBackoff({
       initialInterval: retryWait,
-      maxRetries: retryCount
+      maxRetries: retryCount,
     });
 
   return function(source) {
     const operator = mergeMap(value => {
+      // Uh-oh, value can be an array and should be frozen.
       const immutableValue = isPlainObject(value)
         ? deepFreeze(cloneDeep(value))
         : value;
@@ -34,7 +35,7 @@ module.exports = function createOperator(stage, context) {
       const payload = Object.freeze({
         value: immutableValue,
         params: immutableParams,
-        context
+        context,
       });
 
       const operators = [];

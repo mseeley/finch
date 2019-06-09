@@ -80,8 +80,8 @@ describe(localNameOf(__filename), () => {
         value,
         params: {
           all: [/\w+/],
-          any: [/z/, /a/]
-        }
+          any: [/z/, /a/],
+        },
       });
 
       return expect(promise).resolves.toBe(empty());
@@ -92,8 +92,8 @@ describe(localNameOf(__filename), () => {
         value,
         params: {
           all: [/\w+/],
-          any: [/z/]
-        }
+          any: [/z/],
+        },
       });
 
       expect(promise).resolves.toBe(value);
