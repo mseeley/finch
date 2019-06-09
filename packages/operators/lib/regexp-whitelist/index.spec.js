@@ -21,8 +21,8 @@ describe(localNameOf(__filename), () => {
       return expect(promise).rejects.toThrow(AssertionError);
     });
 
-    it("rejects if no parameters are passed", () => {
-      const promise = whitelist({ value });
+    it("rejects if empty parameters are passed", () => {
+      const promise = whitelist({ value, params: {} });
 
       return expect(promise).rejects.toThrow(AssertionError);
     });
