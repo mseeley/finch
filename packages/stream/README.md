@@ -8,13 +8,13 @@ Finch's babbling brook.
 const {
   createStream,
   empty,
-  validateStream
+  validateStages
 } = require("@finch/stream");
 ```
 
-- `createStream(Object[])`: Creates the stream RxJS `Observable`.
+- `createStream(Object[])`: Creates the stream RxJS `Observable` from a stream's stage definitions.
 - `empty()`: This special return value is used by stages to indicate they have completed successfully but have no value to yield. The retur value from `empty()` should be treated as an opaque token.
-- `validateStream(Object[])`: Validates a stream definition. Returns `null` if the stream validated successfully. Otherwise it returns an array of error information.
+- `validateStages(Object[])`: Validates a stream's stage definitions. Returns `null` if the stream validated successfully. Otherwise it returns an array of error information.
 
 ## Overview
 
@@ -327,15 +327,15 @@ Final value: 2
 Stream has completed!
 ```
 
-### Validating streams
+### Validating stream stages
 
-The `createStream` method assumes its input argument is valid. It's in your best interest to first confirm validity using the `validateStream` method.
+The `createStream` method assumes its input argument is valid. It's in your best interest to first confirm validity using the `validateStages` method.
 
 ```js
-const { createStream, validateStream } = require("@finch/stream");
-const myStream = require("./myStream.json");
+const { createStream, validateStages } = require("@finch/stream");
+const myStages = require("./myStages.json");
 
-const validationErrors = validateStream(myStream);
+const validationErrors = validateStages(myStages);
 
 if (validationErrors) {
   // Handle the error(s).

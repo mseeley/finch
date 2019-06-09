@@ -1,5 +1,5 @@
 const Ajv = require("ajv");
-const schema = require("./schemas/stream.json");
+const schema = require("./schemas/stages.json");
 
 const KEYWORD_ADDITIONAL_PROPERTIES = "additionalProperties";
 const KEYWORD_IF = "if";
@@ -37,12 +37,12 @@ function reduceErrors(errors) {
 
 let validator;
 
-module.exports = function validateStream(stream) {
+module.exports = function validateStages(stages) {
   if (!validator) {
     const ajv = new Ajv({ allErrors: true, jsonPointers: true });
 
     validator = ajv.compile(schema);
   }
 
-  return validator(stream) ? null : reduceErrors(validator.errors);
+  return validator(stages) ? null : reduceErrors(validator.errors);
 };

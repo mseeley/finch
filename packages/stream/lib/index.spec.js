@@ -2,7 +2,7 @@
 const { localNameOf } = require("@finch/core");
 const index = require("./index");
 
-const expected = ["createStream", "empty", "validateStream"];
+const expected = ["createStream", "empty", "validateStages"];
 
 describe(localNameOf(__filename), () => {
   it("exports only expected members", () => {

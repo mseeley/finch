@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`stream/lib/validateStream.spec when validating stream \`name\` must have length 1`] = `
+exports[`stream/lib/validateStages.spec when validating stream \`name\` must have length 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -11,7 +11,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating stream \`off\` must have length 1`] = `
+exports[`stream/lib/validateStages.spec when validating stream \`off\` must have length 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -22,7 +22,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating stream \`params\` must have at least one property 1`] = `
+exports[`stream/lib/validateStages.spec when validating stream \`params\` must have at least one property 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -33,7 +33,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating stream \`retryCount\` must be >= 1 1`] = `
+exports[`stream/lib/validateStages.spec when validating stream \`retryCount\` must be >= 1 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -44,7 +44,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating stream \`retryWait\` must be >= 0 1`] = `
+exports[`stream/lib/validateStages.spec when validating stream \`retryWait\` must be >= 0 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -55,7 +55,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating stream \`use\` must have length 1`] = `
+exports[`stream/lib/validateStages.spec when validating stream \`use\` must have length 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -66,7 +66,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating stream \`verbose\` must be boolean 1`] = `
+exports[`stream/lib/validateStages.spec when validating stream \`verbose\` must be boolean 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -77,7 +77,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating structure rejects additional properties on stream 1`] = `
+exports[`stream/lib/validateStages.spec when validating structure rejects additional properties on stream 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -88,7 +88,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating structure reports all errors 1`] = `
+exports[`stream/lib/validateStages.spec when validating structure reports all errors 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -105,7 +105,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating structure requires \`use\` or \`off\` 1`] = `
+exports[`stream/lib/validateStages.spec when validating structure requires \`use\` or \`off\` 1`] = `
 Array [
   Object {
     "errors": Array [
@@ -118,7 +118,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating structure requires \`use\` or \`off\` 2`] = `
+exports[`stream/lib/validateStages.spec when validating structure requires \`use\` or \`off\` 2`] = `
 Array [
   Object {
     "errors": Array [
@@ -129,7 +129,7 @@ Array [
 ]
 `;
 
-exports[`stream/lib/validateStream.spec when validating structure requires top-level array contains items 1`] = `
+exports[`stream/lib/validateStages.spec when validating structure requires top-level array contains items 1`] = `
 Array [
   Object {
     "errors": Array [
