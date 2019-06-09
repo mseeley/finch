@@ -11,7 +11,7 @@ const EMPTY_OR_VALUE = mergeMap(v => (v === emptyHelper() ? empty() : of(v)));
 const ERROR_TO_EMPTY = catchError(error => empty());
 
 // See: https://github.com/ReactiveX/rxjs/blob/master/doc/operator-creation.md#operator-as-a-pure-function
-module.exports = function createOperator(stage) {
+module.exports = function createOperator(stage, context) {
   const { params = {}, ...config } = stage;
   const { retryCount = 0, retryWait = 1000, continueOnError = true } = config;
 
@@ -33,7 +33,8 @@ module.exports = function createOperator(stage) {
 
       const payload = Object.freeze({
         value: immutableValue,
-        params: immutableParams
+        params: immutableParams,
+        context
       });
 
       const operators = [];
