@@ -5,6 +5,6 @@ const { createExportAliasSpecs } = require("@finch/core-tools");
 
 describe(localNameOf(__filename), () => {
   createExportAliasSpecs({
-    exportDirectory: __dirname
+    exportDirectory: __dirname,
   });
 });

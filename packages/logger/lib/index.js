@@ -14,7 +14,7 @@ const logger = createLogger({
     )
   ),
   level: "debug",
-  transports: [new transports.Console()]
+  transports: [new transports.Console()],
 });
 
 module.exports = function index(prefix) {

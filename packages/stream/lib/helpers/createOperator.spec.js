@@ -118,7 +118,7 @@ describe(localNameOf(__filename), () => {
     const operator = createOperator(
       {
         use: promiseResolveIdentityMutateParams,
-        params
+        params,
       },
       context
     );
@@ -152,7 +152,7 @@ describe(localNameOf(__filename), () => {
     const operator = createOperator(
       {
         use: promiseResolveIdentityMutateIdentity,
-        params
+        params,
       },
       context
     );
@@ -199,7 +199,7 @@ describe(localNameOf(__filename), () => {
     const operator = createOperator(
       {
         use: stringSplit,
-        params: { glue: "," }
+        params: { glue: "," },
       },
       context
     );
@@ -313,7 +313,7 @@ describe(localNameOf(__filename), () => {
     const operator = createOperator(
       {
         use: asyncAwaitThrow,
-        continueOnError: false
+        continueOnError: false,
       },
       context
     );
@@ -328,7 +328,7 @@ describe(localNameOf(__filename), () => {
     const operator = createOperator(
       {
         use: promiseResolveIfEvenElseReject,
-        continueOnError: false
+        continueOnError: false,
       },
       context
     );
@@ -348,7 +348,7 @@ describe(localNameOf(__filename), () => {
       {
         use: spyPromiseResolveIfEvenElseReject,
         retryCount,
-        retryWait
+        retryWait,
       },
       context
     );
@@ -366,7 +366,7 @@ describe(localNameOf(__filename), () => {
           [{ context, params: {}, value: "meaning of life" }],
           [{ context, params: {}, value: 42 }],
           [{ context, params: {}, value: "meaning of life" }],
-          [{ context, params: {}, value: "meaning of life" }]
+          [{ context, params: {}, value: "meaning of life" }],
         ]);
 
         done();

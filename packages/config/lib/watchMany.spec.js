@@ -18,7 +18,7 @@ describe(localNameOf(__filename), () => {
     },
     error(...args) {
       // console.error(...args);
-    }
+    },
   };
 
   const watch = params => {
@@ -40,19 +40,19 @@ describe(localNameOf(__filename), () => {
     const options = {
       postfix: ".json",
       discardDescriptor: true,
-      dir: dirname
+      dir: dirname,
     };
 
     let filename = tmp.fileSync(options).name;
     a = {
       filename,
-      glob: path.basename(filename)
+      glob: path.basename(filename),
     };
 
     filename = tmp.fileSync(options).name;
     b = {
       filename,
-      glob: path.basename(filename)
+      glob: path.basename(filename),
     };
   });
 
@@ -103,7 +103,7 @@ describe(localNameOf(__filename), () => {
       .subscribe(spy, null, () => {
         const expected = {
           isReady: true,
-          config: { data, filename: a.filename }
+          config: { data, filename: a.filename },
         };
         expect(spy.mock.calls[0]).toEqual([expected]);
         done();
@@ -207,7 +207,7 @@ describe(localNameOf(__filename), () => {
   describe("when reading file contents", () => {
     it("emits readConfig errors", done => {
       jest.mock("./helpers", () => ({
-        readConfig: () => Promise.reject(new Error("spec:watchMany"))
+        readConfig: () => Promise.reject(new Error("spec:watchMany")),
       }));
 
       subscriber = watch({ glob: a.glob }).subscribe(null, err => {

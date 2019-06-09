@@ -10,6 +10,6 @@ module.exports = function watchOne({ filename, logger }) {
   return watchMany({
     dirname: path.dirname(filename),
     glob: path.basename(filename),
-    logger
+    logger,
   });
 };
