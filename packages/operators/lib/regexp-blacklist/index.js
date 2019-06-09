@@ -15,7 +15,7 @@ function testValue(value, regexp) {
   return regexp.test(value);
 }
 
-module.exports = async ({ value, params = {} }) => {
+module.exports = async ({ value, params }) => {
   const all = toArray(params.all);
   const any = toArray(params.any);
 
