@@ -5,8 +5,10 @@
 const secret =
   "op8o2MoSpgSxMRikPFdjixbAFz2ucZ5LtvuLU2bTzoCguX53dxfbAnpKfiv3uziu";
 
-module.exports = () => secret;
+const exported = () => secret;
 
 if (process.env.NODE_ENV === "test") {
-  module.exports.__secret__ = secret;
+  exported.__secret__ = secret;
 }
+
+module.exports = exported;

@@ -17,6 +17,6 @@ module.exports = async function({ packageName }) {
   return {
     ...parsed,
     scope,
-    package
+    package,
   };
 };

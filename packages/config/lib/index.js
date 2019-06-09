@@ -13,5 +13,7 @@ function withLogger(fn) {
   return wrapped;
 }
 
-exports.watchOne = withLogger(watchOne);
-exports.watchMany = withLogger(watchMany);
+module.exports = {
+  watchMany: withLogger(watchMany),
+  watchOne: withLogger(watchOne),
+};

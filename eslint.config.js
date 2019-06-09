@@ -24,6 +24,7 @@ module.exports = {
     "dot-notation": "error",
     "eol-last": "error",
     eqeqeq: ["error", "smart"],
+    "import/group-exports": "error",
     "import/named": "error",
     "import/no-absolute-path": "error",
     "import/no-extraneous-dependencies": "error",
