@@ -12,7 +12,7 @@
     "acorn": "6.1.1",
     "babel-eslint": "10.0.2",
     "commitlint": "8.0.0",
-    "eslint": "5.16.0",
+    "eslint": "6.0.1",
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-import": "2.18.0",
     "eslint-plugin-prettier": "3.1.0",
