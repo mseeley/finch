@@ -26,7 +26,7 @@
   "dependencies": {
     "@finch/core": "0.0.0",
     "@mseeley/export-from": "0.1.1",
-    "ajv": "6.10.1",
+    "ajv": "6.10.2",
     "backoff-rxjs": "6.3.2",
     "deep-freeze-strict": "1.1.1",
     "lodash.clonedeep": "4.5.0",
