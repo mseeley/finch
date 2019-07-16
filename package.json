@@ -11,7 +11,7 @@
     "@commitlint/config-lerna-scopes": "8.0.0",
     "acorn": "6.2.0",
     "babel-eslint": "10.0.2",
-    "commitlint": "8.0.0",
+    "commitlint": "8.1.0",
     "eslint": "6.0.1",
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-import": "2.18.0",
