@@ -161,14 +161,14 @@
   resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-8.0.0.tgz#f45349cab9dcfc08a30fbcf2b6317506e17bc8e6"
   integrity sha512-umg1irroowOV+x8oZPBw8woCogZO5MFKUYQq+fRZvhowoSwDHXYILP3ETcdHUgvytw/K/a8Xvu7iCypK6oZQ+g==
 
-"@commitlint/config-lerna-scopes@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-lerna-scopes/-/config-lerna-scopes-8.0.0.tgz#131fc1deb940228be09779047598c1ccf9443b1b"
-  integrity sha512-eeXDMj/daff8QNM8WnWNo+cbv6hC+PiSwSniehTAeD++Tq68Ne3UEvkCafquVCFQhTeMxV34kZfpqzgVT/nDPg==
+"@commitlint/config-lerna-scopes@8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-lerna-scopes/-/config-lerna-scopes-8.1.0.tgz#6c76efd6b04348adf6c2710c5b075bcf92a23d5b"
+  integrity sha512-BHM9h349fP21VJM7cMYMikrUwwQE9EzQURDf/48ncblTYGIPLdf8ba32Aj9jZhBVZxBAVft4oACC85pEuLAbYw==
   dependencies:
     import-from "3.0.0"
     resolve-pkg "2.0.0"
-    semver "6.0.0"
+    semver "6.1.1"
 
 "@commitlint/ensure@^8.1.0":
   version "8.1.0"
