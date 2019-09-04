@@ -27,6 +27,6 @@
     "@finch/core": "0.0.0",
     "@finch/core-tools": "0.0.0",
     "@mseeley/export-from": "0.1.1",
-    "rxjs": "6.5.2"
+    "rxjs": "6.5.3"
   }
 }
