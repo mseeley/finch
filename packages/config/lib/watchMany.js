@@ -18,10 +18,15 @@ module.exports = function watchMany({
     const pattern = path.join(dirname, glob);
 
     let isReady = false;
+    let isUnsubscribed = false;
     let initialConfigs = [];
 
     const onchange = eventName => {
       return async filename => {
+        if (isUnsubscribed) {
+          return;
+        }
+
         logger.verbose(`Received "${eventName}" for ${filename}`);
 
         try {
@@ -46,11 +51,19 @@ module.exports = function watchMany({
     };
 
     const onerror = error => {
+      if (isUnsubscribed) {
+        return;
+      }
+
       logger.error(error.message);
       subscriber.error(error);
     };
 
     const onready = () => {
+      if (isUnsubscribed) {
+        return;
+      }
+
       logger.debug(
         `Ready for changes and emitting initial configs: ${pattern}`
       );
@@ -80,6 +93,12 @@ module.exports = function watchMany({
       .on("error", onerror);
 
     return function unsubscribe() {
+      // The watcher.close() call is async. Use this `isUnsubscribed` flag to
+      // avoid any internal side effects from `watcher` activity after
+      // `unsubscribe()` is called but before `watcher` has closed. Rx ensures
+      // that no side effects reach subscribers after unsubscribe.
+      isUnsubscribed = true;
+
       if (watcher) {
         watcher.close();
         watcher = null;
