@@ -175,10 +175,7 @@ describe(localNameOf(__filename), () => {
     // An emitter ignore any input value and emits multiple values over time. It
     // does not complete.
     of(undefined)
-      .pipe(
-        operator,
-        take(3)
-      )
+      .pipe(operator, take(3))
       .subscribe(
         arg => {
           spy(arg);

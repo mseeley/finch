@@ -48,10 +48,7 @@ module.exports = function createOperator(stage, context) {
         operators.push(ERROR_TO_EMPTY);
       }
 
-      return defer(() => factory(payload)).pipe(
-        ...operators,
-        EMPTY_OR_VALUE
-      );
+      return defer(() => factory(payload)).pipe(...operators, EMPTY_OR_VALUE);
     });
 
     return source.pipe(operator);
