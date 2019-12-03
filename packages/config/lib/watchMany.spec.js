@@ -221,7 +221,7 @@ describe(localNameOf(__filename), () => {
   describe("when managing the file watcher", () => {
     function MockChokidar() {
       this.emitter = new Emitter();
-      this.close = jest.fn();
+      this.close = jest.fn(() => Promise.resolve());
       this.on = function(eventName, handler) {
         this.emitter.on(eventName, handler);
         return this;
