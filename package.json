@@ -22,7 +22,7 @@
     "jest": "24.9.0",
     "lerna": "3.19.0",
     "lint-staged": "9.5.0",
-    "nodemon": "2.0.1",
+    "nodemon": "2.0.2",
     "parse-package-name": "0.1.0",
     "prettier": "1.19.1",
     "validate-npm-package-name": "3.0.0"
