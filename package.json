@@ -7,7 +7,7 @@
   "license": "MPL-2.0",
   "devDependencies": {
     "@commitlint/cli": "8.3.4",
-    "@commitlint/config-conventional": "8.2.0",
+    "@commitlint/config-conventional": "8.3.4",
     "@commitlint/config-lerna-scopes": "8.2.0",
     "acorn": "7.1.0",
     "babel-eslint": "10.0.3",
