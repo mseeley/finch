@@ -21,7 +21,7 @@
     "inquirer": "7.0.3",
     "jest": "24.9.0",
     "lerna": "3.20.2",
-    "lint-staged": "10.0.1",
+    "lint-staged": "10.0.2",
     "nodemon": "2.0.2",
     "parse-package-name": "0.1.0",
     "prettier": "1.19.1",
