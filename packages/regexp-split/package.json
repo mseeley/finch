@@ -1,0 +1,22 @@
+{
+  "fixme": true,
+  "name": "@finch/regexp-split",
+  "private": false,
+  "version": "0.0.0",
+  "description": "Emits one or more values after splitting a string using a regular expression.",
+  "author": "Matt Seeley <mattseeley@hotmail.com>",
+  "homepage": "https://github.com/mseeley/finch",
+  "license": "MPL-2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://mseeley@github.com/mseeley/finch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mseeley/finch/issues"
+  },
+  "dependencies": {
+    "@finch/core": "0.0.0",
+    "rxjs": "6.5.4"
+  }
+}

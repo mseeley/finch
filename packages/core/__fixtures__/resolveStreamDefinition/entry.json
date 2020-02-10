@@ -1,0 +1,1 @@
+[{ "use": "./operator-a.js" }, { "include": "./include-multiple.json" }]
