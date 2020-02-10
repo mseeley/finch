@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "operator.json",
+  "type": "object",
+  "additionalProperties": false,
+  "dependencies": {
+    "include": {
+      "allOf": [
+        {
+          "not": {
+            "required": ["continueOnError"]
+          }
+        },
+        {
+          "not": {
+            "required": ["ignore"]
+          }
+        },
+        {
+          "not": {
+            "required": ["params"]
+          }
+        },
+        {
+          "not": {
+            "required": ["retryCount"]
+          }
+        },
+        {
+          "not": {
+            "required": ["retryWait"]
+          }
+        },
+        {
+          "not": {
+            "required": ["use"]
+          }
+        }
+      ]
+    },
+    "use": {
+      "allOf": [
+        {
+          "not": {
+            "required": ["ignore"]
+          }
+        }
+      ]
+    },
+    "ignore": {
+      "allOf": [
+        {
+          "not": {
+            "required": ["use"]
+          }
+        }
+      ]
+    }
+  },
+  "anyOf": [
+    {
+      "required": ["include"]
+    },
+    {
+      "required": ["ignore"]
+    },
+    {
+      "required": ["use"]
+    }
+  ],
+  "properties": {
+    "continueOnError": {
+      "type": "boolean"
+    },
+    "ignore": {
+      "type": "string",
+      "minLength": 1
+    },
+    "include": {
+      "type": "string",
+      "minLength": 1
+    },
+    "params": {
+      "type": "object"
+    },
+    "retryCount": {
+      "type": "number",
+      "minimum": 1
+    },
+    "retryWait": {
+      "type": "number",
+      "minimum": 0
+    },
+    "use": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

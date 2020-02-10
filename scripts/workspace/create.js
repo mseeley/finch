@@ -41,7 +41,7 @@ async function updateReadme({ isPrivate, packageDescription, packageName }) {
   const tokens = { packageDescription, isPrivate, packageName };
 
   const data = Object.entries(tokens).reduce(
-    (acc, [token, value]) => acc.replace(`{${token}}`, value),
+    (acc, [token, value]) => acc.replace(new RegExp(`{${token}}`, "g"), value),
     await readReadme({ packageName })
   );
 

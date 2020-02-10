@@ -92,10 +92,10 @@ module.exports = {
   // reporters: undefined,
 
   // Automatically reset mock state between every test
-  resetMocks: true,
+  resetMocks: false,
 
   // Reset the module registry before running each individual test
-  resetModules: true,
+  resetModules: false,
 
   // A path to a custom resolver
   // resolver: null,
@@ -173,4 +173,8 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
+  // An increased timeout is necessary when running tests on CI due to long
+  // running file watching tests.
+  testTimeout: 10000,
 };

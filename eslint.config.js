@@ -24,15 +24,18 @@ module.exports = {
     "dot-notation": "error",
     "eol-last": "error",
     eqeqeq: ["error", "smart"],
-    "import/group-exports": "error",
-    "import/named": "error",
+    // Not implemented for cjs: https://github.com/benmosher/eslint-plugin-import/issues/1145
+    // "import/named": "error",
     "import/no-absolute-path": "error",
     "import/no-extraneous-dependencies": "error",
-    "import/no-unresolved": ["error", { caseSensitive: true }],
+    // Not implemented for cjs.
+    // "import/no-mutable-exports": "error",
+    "import/no-unresolved": ["error", { caseSensitive: true, commonjs: true }],
     "import/no-useless-path-segments": "error",
     "import/order": [
       "error",
       {
+        alphabetize: { order: "asc" },
         groups: [
           "builtin",
           "external",

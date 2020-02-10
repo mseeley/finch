@@ -1,8 +1,8 @@
 const path = require("path");
 const fs = require("fs-extra");
 const getOrgScopeAll = require("./getOrgScopeAll");
-const toOrgScope = require("./toOrgScope");
 const resolvePackagesDir = require("./resolvePackagesDir");
+const toOrgScope = require("./toOrgScope");
 
 module.exports = async function findPackagesInScope({ scope } = {}) {
   const packages = [];

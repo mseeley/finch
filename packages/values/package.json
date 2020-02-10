@@ -1,0 +1,24 @@
+{
+  "fixme": true,
+  "name": "@finch/values",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Utility operator that emits static values then completes.",
+  "author": "Matt Seeley <mattseeley@hotmail.com>",
+  "homepage": "https://github.com/mseeley/finch",
+  "license": "MPL-2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://mseeley@github.com/mseeley/finch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mseeley/finch/issues"
+  },
+  "devDependencies": {
+    "@finch/core": "0.0.0"
+  },
+  "dependencies": {
+    "rxjs": "6.5.4"
+  }
+}
