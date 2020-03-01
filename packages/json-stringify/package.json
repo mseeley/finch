@@ -1,6 +1,6 @@
 {
   "name": "@finch/json-stringify",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Yields the JSON representation of the input value.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
@@ -17,6 +17,6 @@
     "url": "https://github.com/mseeley/finch/issues"
   },
   "devDependencies": {
-    "@finch/core": "^1.0.6"
+    "@finch/core": "^1.0.7"
   }
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/mseeley/finch/compare/v1.0.6...v1.0.7) (2020-03-01)
+
+
+### Bug Fixes
+
+* **core:** update package.json description ([37dc42c](https://github.com/mseeley/finch/commit/37dc42c))
+
+
+
+
+
 ## [1.0.6](https://github.com/mseeley/finch/compare/v1.0.5...v1.0.6) (2020-03-01)
 
 
