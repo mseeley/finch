@@ -1,6 +1,6 @@
 {
   "name": "@finch/regexp-replace",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Yields a new string with some or all matches of a pattern replaced by a replacement.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
@@ -17,6 +17,6 @@
     "url": "https://github.com/mseeley/finch/issues"
   },
   "dependencies": {
-    "@finch/core": "^1.0.7"
+    "@finch/core": "^1.0.8"
   }
 }

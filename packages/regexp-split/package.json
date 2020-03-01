@@ -1,6 +1,6 @@
 {
   "name": "@finch/regexp-split",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Yields one or more values after splitting a string using a regular expression.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
@@ -17,7 +17,7 @@
     "url": "https://github.com/mseeley/finch/issues"
   },
   "dependencies": {
-    "@finch/core": "^1.0.7",
+    "@finch/core": "^1.0.8",
     "rxjs": "6.5.4"
   }
 }

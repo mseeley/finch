@@ -1,6 +1,6 @@
 {
   "name": "@finch/core",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Helper modules for stream and operator authors.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
@@ -28,7 +28,7 @@
     "rxjs": "6.5.4"
   },
   "devDependencies": {
-    "@finch/values": "^1.0.7",
+    "@finch/values": "^1.0.8",
     "tmp": "0.1.0"
   }
 }

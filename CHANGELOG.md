@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/mseeley/finch/compare/v1.0.7...v1.0.8) (2020-03-01)
+
+
+### Bug Fixes
+
+* **core:** properly avoid ignored operators ([395c5f3](https://github.com/mseeley/finch/commit/395c5f3)), closes [#251](https://github.com/mseeley/finch/issues/251)
+
+
+
+
+
 ## [1.0.7](https://github.com/mseeley/finch/compare/v1.0.6...v1.0.7) (2020-03-01)
 
 

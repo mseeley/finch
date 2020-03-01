@@ -1,6 +1,6 @@
 {
   "name": "@finch/values",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Yields static values then completes.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
@@ -17,7 +17,7 @@
     "url": "https://github.com/mseeley/finch/issues"
   },
   "devDependencies": {
-    "@finch/core": "^1.0.7"
+    "@finch/core": "^1.0.8"
   },
   "dependencies": {
     "rxjs": "6.5.4"

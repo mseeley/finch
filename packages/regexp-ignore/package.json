@@ -1,6 +1,6 @@
 {
   "name": "@finch/regexp-ignore",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Ignores the input value if it matches a regular expression pattern.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
@@ -17,6 +17,6 @@
     "url": "https://github.com/mseeley/finch/issues"
   },
   "dependencies": {
-    "@finch/core": "^1.0.7"
+    "@finch/core": "^1.0.8"
   }
 }
