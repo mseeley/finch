@@ -1,7 +1,7 @@
 {
   "name": "@finch/values",
   "version": "1.0.6",
-  "description": "Utility operator that emits static values then completes.",
+  "description": "Yields static values then completes.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
   "license": "MPL-2.0",
