@@ -53,8 +53,16 @@ async function reduceOperator(options) {
   const resolveOptions = options.resolveFrom
     ? { paths: [options.resolveFrom] }
     : undefined;
-  const { include, use } = options.definition;
+  const { include, use, ignore } = options.definition;
   const module = include || use;
+
+  // Then, build a flat list of one or more definitions coupled to their
+  // recursive dependencies. Any `ignore` operator definitions are ignored.
+  const acc = { definitions: [], dependencies: new Set() };
+
+  if (ignore) {
+    return acc;
+  }
 
   let resolvedModule;
 
@@ -71,10 +79,6 @@ async function reduceOperator(options) {
 
     throw new Error(message);
   }
-
-  // Then, build a flat list of one or more definitions coupled to their
-  // recursive dependencies. Any `off` operator definitions are ignored.
-  const acc = { definitions: [], dependencies: new Set() };
 
   if (include) {
     let nextDefinitions;
