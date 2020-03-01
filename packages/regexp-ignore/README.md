@@ -4,7 +4,7 @@
 
 # `@finch/regexp-ignore`
 
-> :bird: Stability: 2 - Stable (added in 0.0.0)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 Conditional operator that only yields the `value` it was provided when the value does not match its regular expression `pattern`.
 

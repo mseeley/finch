@@ -4,7 +4,7 @@
 
 # `@finch/values`
 
-> :bird: Stability: 2 - Stable (added in #.#.#)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 Utility operator that yields static values then completes. This operator is typically used to feed static values to a stream during development.
 

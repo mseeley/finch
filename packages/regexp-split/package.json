@@ -1,7 +1,5 @@
 {
-  "fixme": true,
   "name": "@finch/regexp-split",
-  "private": false,
   "version": "1.0.0",
   "description": "Emits one or more values after splitting a string using a regular expression.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",

@@ -1,7 +1,5 @@
 {
-  "fixme": true,
   "name": "@finch/json-stringify",
-  "private": false,
   "version": "1.0.0",
   "description": "Returns the JSON representation of the input value.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",

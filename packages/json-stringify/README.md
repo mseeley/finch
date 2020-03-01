@@ -4,7 +4,7 @@
 
 # `@finch/json-stringify`
 
-> :bird: Stability: 2 - Stable (added in 0.0.0)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 Tranformational operator that yields the JSON representation of the input `value`.
 

@@ -24,7 +24,7 @@ Finch does not expose TypeScript typings. But, the API below is documented using
 
 ### `createStream`
 
-> :bird: Stability: 2 - Stable (added in 0.0.0)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 ```ts
 type OperatorDefinition = {
@@ -73,7 +73,7 @@ See the [stream schema](schemas/stream.json) for more information.
 
 ### `createStreamFromPath`
 
-> :bird: Stability: 2 - Stable (added in 0.0.0)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 ```ts
 type Options = {
@@ -111,7 +111,7 @@ By design one stream will not affect another stream.
 
 ### `EMPTY`
 
-> :bird: Stability: 2 - Stable (added in 0.0.0)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 ```ts
 function EMPTY(): string;
@@ -131,7 +131,7 @@ The return value of this function should be treated as opaque. Do not base any l
 
 ### `localNameOf`
 
-> :dragon: Stability: 1 - Experimental (added in 0.0.0)
+> :dragon: Stability: 1 - Experimental (added in 1.0.0)
 
 ```ts
 function localNameOf(filename: string): string;
@@ -147,9 +147,25 @@ _Finch revisions are expected to introduce breaking changes._
 
 ---
 
+### `toRegExp`
+
+> :bird: Stability: 2 - Stable (added in 1.0.0)
+
+```ts
+function toRegExp(pattern: string): RegExp;
+```
+
+[Implementation](toRegExp.js)
+
+#### Description
+
+This helper converts a serialized regular expression into a true regular expression.
+
+---
+
 ### `watchFiles`
 
-> :bird: Stability: 2 - Stable (added in 0.0.0)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 ```ts
 type Ready = {
@@ -199,7 +215,7 @@ Provides an Observable which yields events when files are added, changed, or rem
 
 Dot files, `node_modules` directories, `package.json`, and `package-lock.json` files are automatically ignored while resolving glob patterns. There is no way to change this behavior.
 
-The watcher uses the `FINCH_IO_STABILITY_THRESHOLD` environment value to determine how many milliseconds a filesize must remain stable before considering the file's addition or removal complete.
+The watcher uses the `FINCH_STABILITY_THRESHOLD` environment value to determine how many milliseconds a filesize must remain stable before considering the file's addition or removal complete.
 
 `watchFiles` [uses Chokidar](https://github.com/paulmillr/chokidar) extensively.
 

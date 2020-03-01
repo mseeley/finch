@@ -4,7 +4,7 @@
 
 # `@finch/regexp-split`
 
-> :bird: Stability: 2 - Stable (added in 0.0.0)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 Yields one or more values after splitting the string `value` using a regular expression.
 

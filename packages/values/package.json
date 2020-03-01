@@ -1,5 +1,4 @@
 {
-  "fixme": true,
   "name": "@finch/values",
   "version": "1.0.0",
   "description": "Utility operator that emits static values then completes.",

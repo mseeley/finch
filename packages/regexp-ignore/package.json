@@ -1,6 +1,5 @@
 {
   "name": "@finch/regexp-ignore",
-  "private": false,
   "version": "1.0.0",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",

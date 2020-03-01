@@ -1,7 +1,6 @@
 {
   "name": "finch",
   "private": true,
-  "bin": "./packages/cli/index.js",
   "engines": {
     "node": ">=10.19.0"
   },

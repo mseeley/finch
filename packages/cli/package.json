@@ -1,7 +1,5 @@
 {
-  "fixme": true,
   "name": "@finch/cli",
-  "private": false,
   "version": "1.0.0",
   "description": "Finch's command line interface.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",

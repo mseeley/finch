@@ -4,7 +4,7 @@
 
 # `@finch/regexp-replace`
 
-> :bird: Stability: 2 - Stable (added in 0.0.0)
+> :bird: Stability: 2 - Stable (added in 1.0.0)
 
 Transformation operator that yields the `value` it was provided after replacing a regular expression `pattern` with a `replacement`.
 
