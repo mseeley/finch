@@ -1,6 +1,7 @@
 {
   "name": "@finch/regexp-accept",
   "version": "1.0.6",
+  "description": "Yields the input value if it matches a regular expression pattern.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
   "license": "MPL-2.0",
