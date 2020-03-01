@@ -1,6 +1,7 @@
 {
   "name": "@finch/regexp-replace",
   "version": "1.0.6",
+  "description": "Yields a new string with some or all matches of a pattern replaced by a replacement.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
   "license": "MPL-2.0",
