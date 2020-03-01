@@ -1,6 +1,6 @@
 {
   "name": "@finch/cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Finch's command line interface.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
@@ -17,7 +17,7 @@
     "url": "https://github.com/mseeley/finch/issues"
   },
   "dependencies": {
-    "@finch/core": "1.0.2",
+    "@finch/core": "^1.0.5",
     "node-emoji": "1.10.0",
     "yargs": "15.0.2"
   },
