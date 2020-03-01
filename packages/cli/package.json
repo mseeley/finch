@@ -16,10 +16,8 @@
   "bugs": {
     "url": "https://github.com/mseeley/finch/issues"
   },
-  "devDependencies": {
-    "@finch/core": "^1.0.2"
-  },
   "dependencies": {
+    "@finch/core": "1.0.2",
     "node-emoji": "1.10.0",
     "yargs": "15.0.2"
   },
