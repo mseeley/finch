@@ -124,6 +124,15 @@ The following is tested on macOS:
 1. Click back into the Chrome window, NiM should re-open developer tools
 1. Repeat
 
+## Releasing
+
+- Log into to NPM and `@finch` scope:
+  - `npm login --scope=finch`
+- Interactively determine new version number for packages and keep the result local for review:
+  - `yarn lerna version --no-push`
+- Publish the latest package versions:
+  - `yarn lerna publish from-package`
+
 ---
 
 :bird:
