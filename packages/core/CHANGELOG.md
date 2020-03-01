@@ -1,0 +1,12 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2020-03-01)
+
+
+### Features
+
+* **core:** @finch/core consolidates shared business logic ([6df8e9d](https://github.com/mseeley/finch/commit/6df8e9d))
+* **core:** complete finch core package ([cf35006](https://github.com/mseeley/finch/commit/cf35006))

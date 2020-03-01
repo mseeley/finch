@@ -1,7 +1,7 @@
 {
   "fixme": true,
   "name": "@finch/values",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Utility operator that emits static values then completes.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
@@ -15,7 +15,7 @@
     "url": "https://github.com/mseeley/finch/issues"
   },
   "devDependencies": {
-    "@finch/core": "0.0.0"
+    "@finch/core": "1.0.0"
   },
   "dependencies": {
     "rxjs": "6.5.4"

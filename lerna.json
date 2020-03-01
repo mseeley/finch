@@ -1,9 +1,14 @@
 {
-  "packages": ["packages/*"],
-  "version": "0.0.0",
+  "packages": [
+    "packages/*"
+  ],
+  "version": "1.0.0",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "ignoreChanges": ["**/*.spec.js", "**/*.md"],
+  "ignoreChanges": [
+    "**/*.spec.js",
+    "**/*.md"
+  ],
   "command": {
     "publish": {
       "conventionalCommits": true
