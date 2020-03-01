@@ -57,6 +57,20 @@ describe(localNameOf(__filename), () => {
     });
   });
 
+  it("resolves mixture of used and ignored operators", () => {
+    // Although the `@finch/core` module is not an operator it's used here to
+    // keep node's module resolution contained within the core module.
+    return expect(
+      resolveStreamDefinition({
+        definitions: [{ use: "@finch/core" }, { ignore: "./operator-a.js" }],
+        resolveFrom: fixtures(),
+      })
+    ).resolves.toEqual({
+      definitions: [{ use: "@finch/core" }],
+      dependencies: [],
+    });
+  });
+
   it("can resolve absolute local files without resolveFrom", () => {
     return expect(
       resolveStreamDefinition({
@@ -116,11 +130,11 @@ describe(localNameOf(__filename), () => {
   it("throws when definition is invalid", () => {
     return expect(
       resolveStreamDefinition({
-        definitions: [{ use: "./operator-a.js", off: "./operator-a.js" }],
+        definitions: [{ use: "./operator-a.js", ignore: "./operator-a.js" }],
         resolveFrom: fixtures(),
       })
     ).rejects.toThrow(
-      `{"use":"./operator-a.js","off":"./operator-a.js"} is invalid`
+      `{"use":"./operator-a.js","ignore":"./operator-a.js"} is invalid`
     );
   });
 
