@@ -1,0 +1,11 @@
+**/.DS_Store
+**/.DS_Store?
+**/*.log
+**/._*
+**/.Spotlight-V100
+**/.Trashes
+**/Thumbs.db
+**/node_modules/
+**/private/
+**/__fixtures__/
+**/*.spec.js
