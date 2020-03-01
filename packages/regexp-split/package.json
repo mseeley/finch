@@ -1,7 +1,7 @@
 {
   "name": "@finch/regexp-split",
   "version": "1.0.6",
-  "description": "Emits one or more values after splitting a string using a regular expression.",
+  "description": "Yields one or more values after splitting a string using a regular expression.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
   "license": "MPL-2.0",
