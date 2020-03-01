@@ -29,6 +29,12 @@ Create then enter a directory to hold your Finch streams:
 md finch && cd finch
 ```
 
+Initialize NPM in this directory. Initialization will create a `package.json` file that helps manage the installed versions of Finch operators. Go ahead and select the defaults, the values aren't meaningful.
+
+```
+npm init
+```
+
 Then install Finch into this directory. We'll start with the Finch CLI. It finds files containing Finch stream definitions.
 
 ```
