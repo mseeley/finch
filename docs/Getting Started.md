@@ -174,6 +174,14 @@ As before the streams will yield all of their values. But, now instead of exitin
 
 :bird: The file watching may not work correctly when the stream definitions are on a network volume.
 
+## Upgrading Finch
+
+All Finch operators can be upgraded at once:
+
+```
+npm upgrade
+```
+
 ## What's next?
 
 Keep experimenting with the streams made above. Then stop back by the [guides](/README.md#guides) and [package documentation](/README.md#package-documentation) for more information.
