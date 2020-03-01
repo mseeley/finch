@@ -1,7 +1,7 @@
 {
   "name": "@finch/core",
   "version": "1.0.6",
-  "description": "Helper modules for stream and operator authors",
+  "description": "Helper modules for stream and operator authors.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
   "license": "MPL-2.0",
