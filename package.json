@@ -39,7 +39,6 @@
     "lint:js": "eslint \"**/*.js\"",
     "new": "node scripts/create-cli",
     "pre-commit": ".git/hooks/pre-commit",
-    "publish": "lerna publish",
     "test": "jest",
     "test:debug": "jest --clearCache && npx -n '--inspect-brk' jest --runInBand --no-cache"
   }
