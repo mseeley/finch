@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/mseeley/finch/compare/v1.0.5...v1.0.6) (2020-03-01)
+
+
+### Bug Fixes
+
+* **cli:** does not publish unit tests nor fixtures ([ae0069d](https://github.com/mseeley/finch/commit/ae0069d))
+* **core:** does not publish unit tests nor fixtures ([6e41f97](https://github.com/mseeley/finch/commit/6e41f97))
+* **json-stringify:** does not publish unit tests nor fixtures ([f71704a](https://github.com/mseeley/finch/commit/f71704a))
+* **regexp-accept:** does not publish unit tests nor fixtures ([326e39c](https://github.com/mseeley/finch/commit/326e39c))
+* **regexp-ignore:** does not publish unit tests nor fixtures ([54d47c2](https://github.com/mseeley/finch/commit/54d47c2))
+* **regexp-replace:** does not publish unit tests nor fixtures ([f8dc5c7](https://github.com/mseeley/finch/commit/f8dc5c7))
+* **regexp-split:** does not publish unit tests nor fixtures ([dda7ddb](https://github.com/mseeley/finch/commit/dda7ddb))
+* **values:** does not publish unit tests nor fixtures ([1e9737c](https://github.com/mseeley/finch/commit/1e9737c))
+
+
+
+
+
 ## [1.0.5](https://github.com/mseeley/finch/compare/v1.0.4...v1.0.5) (2020-03-01)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@finch/core",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
   "license": "MPL-2.0",
@@ -27,7 +27,7 @@
     "rxjs": "6.5.4"
   },
   "devDependencies": {
-    "@finch/values": "^1.0.5",
+    "@finch/values": "^1.0.6",
     "tmp": "0.1.0"
   }
 }
