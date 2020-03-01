@@ -1,6 +1,6 @@
 {
   "name": "@finch/cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Finch's command line interface.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
   "homepage": "https://github.com/mseeley/finch",
