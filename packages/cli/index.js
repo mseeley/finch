@@ -2,7 +2,7 @@
 
 const path = require("path");
 const { localNameOf } = require("@finch/core");
-const json = require("../../package.json");
+const json = require("./package.json");
 
 const localName = `[${localNameOf(__filename)}]`;
 
