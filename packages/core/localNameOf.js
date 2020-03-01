@@ -1,5 +1,5 @@
 const path = require("path");
-const prefix = new RegExp(`.+${path.sep}packages${path.sep}`);
+const prefix = new RegExp(`.+${path.sep}(packages|@finch)${path.sep}`);
 const suffix = /\.js$/;
 
 // Future: This could be made more useful to other users too. If it's not a
