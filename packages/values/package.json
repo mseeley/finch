@@ -1,7 +1,6 @@
 {
   "fixme": true,
   "name": "@finch/values",
-  "private": true,
   "version": "0.0.0",
   "description": "Utility operator that emits static values then completes.",
   "author": "Matt Seeley <mattseeley@hotmail.com>",
