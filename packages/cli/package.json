@@ -19,7 +19,7 @@
   "dependencies": {
     "@finch/core": "^1.0.8",
     "node-emoji": "1.10.0",
-    "yargs": "15.1.0"
+    "yargs": "15.3.0"
   },
   "bin": {
     "finch": "./index.js"
