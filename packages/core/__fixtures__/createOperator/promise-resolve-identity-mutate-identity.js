@@ -1,4 +1,4 @@
-module.exports = arg => {
+module.exports = (arg) => {
   delete arg.value;
   delete arg.params;
 

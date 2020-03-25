@@ -51,11 +51,11 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("when creating a stream", () => {
-    it("errors without an absolute pathname", done => {
+    it("errors without an absolute pathname", (done) => {
       // Error thrown by `createStreamFromPath`.
       subscriber = createStreamFromPath({
         pathname: "./does-not-exist.json",
-      }).subscribe(done.fail, error => {
+      }).subscribe(done.fail, (error) => {
         expect(error.message).toEqual(
           expect.stringContaining("Path must be absolute")
         );
@@ -85,7 +85,7 @@ describe(localNameOf(__filename), () => {
           shouldWatch,
         }).subscribe(
           done.fail,
-          error => {
+          (error) => {
             expect(error.message).toEqual(
               expect.stringContaining("Path must exist")
             );
@@ -110,7 +110,7 @@ describe(localNameOf(__filename), () => {
         shouldWatch,
       }).subscribe(
         done.fail,
-        error => {
+        (error) => {
           expect(error.message).toEqual(
             expect.stringContaining("Path must exist")
           );
@@ -162,7 +162,7 @@ describe(localNameOf(__filename), () => {
       done();
     });
 
-    it("does not error when definition is unlinked when parent directory is unlinked while watching", async done => {
+    it("does not error when definition is unlinked when parent directory is unlinked while watching", async (done) => {
       const [never] = await copyToUniqueTmpDir([
         fixtures("never.json"),
         fixtures("never.js"),
@@ -193,7 +193,7 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("when matching glob or directory of streams", () => {
-    it("an error in one stream doesn't affect other streams", done => {
+    it("an error in one stream doesn't affect other streams", (done) => {
       const dirname = fixtures();
       const onNext = jest.fn();
 
@@ -260,7 +260,7 @@ describe(localNameOf(__filename), () => {
         })
           .pipe(take(2))
           .subscribe(
-            async v => {
+            async (v) => {
               onNext(v);
               await copyValidYamlOnce();
             },
@@ -279,7 +279,7 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("when a stream file changes", () => {
-    it("it refreshes a stream after its file changes while watching", async done => {
+    it("it refreshes a stream after its file changes while watching", async (done) => {
       const [validJSON] = await copyToUniqueTmpDir([
         fixtures("valid.json"),
         fixtures("resolve.js"),
@@ -303,7 +303,7 @@ describe(localNameOf(__filename), () => {
       })
         .pipe(take(assertions))
         .subscribe(
-          async v => {
+          async (v) => {
             onNext(v);
             await touchValidJSONOnce();
           },
@@ -317,7 +317,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("it does not refresh other streams while watching", async done => {
+    it("it does not refresh other streams while watching", async (done) => {
       const [validJSON] = await copyToUniqueTmpDir([
         fixtures("valid.json"),
         fixtures("valid.yaml"),
@@ -350,7 +350,7 @@ describe(localNameOf(__filename), () => {
       subscriber = createStreamFromPath({
         pathname: path.join(path.dirname(validJSON), "valid.*"),
         shouldWatch: true,
-      }).subscribe(async v => {
+      }).subscribe(async (v) => {
         onNext(v);
         await touchValidJSONOnceThenAssert();
       }, done.fail);
@@ -358,7 +358,7 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("when sub streams complete", () => {
-    it("completes stream when all sub streams complete", async done => {
+    it("completes stream when all sub streams complete", async (done) => {
       const [validJSON] = await copyToUniqueTmpDir([
         fixtures("valid.json"),
         fixtures("valid.yaml"),
@@ -377,7 +377,7 @@ describe(localNameOf(__filename), () => {
       });
     });
 
-    it("does not complete stream when all sub streams complete when watching", async done => {
+    it("does not complete stream when all sub streams complete when watching", async (done) => {
       const [validJSON] = await copyToUniqueTmpDir([
         fixtures("valid.json"),
         fixtures("valid.yaml"),
@@ -390,7 +390,7 @@ describe(localNameOf(__filename), () => {
         pathname: path.join(path.dirname(validJSON), "valid.*"),
         shouldWatch: true,
       }).subscribe(
-        async v => {
+        async (v) => {
           onNext(v);
 
           // After both streams have emitted there values then set a timeout

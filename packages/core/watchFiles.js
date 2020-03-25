@@ -24,7 +24,7 @@ function assertOptions(options) {
   assert(Array.isArray(pathnames), message);
   assert(pathnames.length > 0, message);
   assert(
-    pathnames.every(pathname => path.isAbsolute(pathname)),
+    pathnames.every((pathname) => path.isAbsolute(pathname)),
     message
   );
 
@@ -65,7 +65,7 @@ module.exports = function watchFiles(options = {}, ioc = {}) {
     filterAdd = filterChange = filterUnlink = true;
   }
 
-  return new Observable(observer => {
+  return new Observable((observer) => {
     const stabilityThreshold = Number(process.env.FINCH_STABILITY_THRESHOLD);
 
     let watcher;
@@ -91,7 +91,7 @@ module.exports = function watchFiles(options = {}, ioc = {}) {
         }
       };
 
-      onError = error => {
+      onError = (error) => {
         observer.error(error);
       };
 

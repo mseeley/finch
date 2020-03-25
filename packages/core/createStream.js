@@ -20,7 +20,7 @@ module.exports = function createStream(options = {}) {
   // Used to trigger a stream dependencies re-resolve after:
   // - a dependency changed or was re-added after being deleted. All deleted
   //   dependencies must be re-added before dependencies are resolved.
-  const awaitFirstChange = pathnames =>
+  const awaitFirstChange = (pathnames) =>
     watchFiles({ pathnames, ignoreInitial: true }).pipe(
       scan(
         (state, watched) => {
@@ -41,7 +41,7 @@ module.exports = function createStream(options = {}) {
         },
         { changed: false, missing: new Set() }
       ),
-      skipWhile(state => !state.changed),
+      skipWhile((state) => !state.changed),
       first()
     );
 
@@ -81,7 +81,7 @@ module.exports = function createStream(options = {}) {
   );
 
   return streams$.pipe(
-    switchMap(stream => {
+    switchMap((stream) => {
       const { definitions, dependencies } = stream;
       const hasDefinitions = definitions.length > 0;
       const hasDependencies = dependencies.length > 0;
@@ -114,7 +114,7 @@ module.exports = function createStream(options = {}) {
             factory: path.resolve(__dirname, "./createOperators.js"),
             options: { env: process.env },
           }).pipe(
-            catchError(error => {
+            catchError((error) => {
               log.error(localName, "Encountered error:", error);
 
               if (isFaultTolerant) {

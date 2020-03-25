@@ -30,7 +30,7 @@ function question(name, options) {
 }
 
 function filter(...filters) {
-  return async function(initialValue) {
+  return async function (initialValue) {
     let filteredValue = initialValue;
     for (let i = 0; i < filters.length; i++) {
       filteredValue = await filters[i](filteredValue);
@@ -40,7 +40,7 @@ function filter(...filters) {
 }
 
 function validate(...validations) {
-  return async function(value, answers) {
+  return async function (value, answers) {
     let result = false;
 
     for (let i = 0; i < validations.length; i++) {

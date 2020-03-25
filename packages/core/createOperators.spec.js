@@ -9,7 +9,7 @@ describe(localNameOf(__filename), () => {
     return path.join(__dirname, "__fixtures__", "createOperators", filename);
   }
 
-  it("creates an observable sequence of operators", done => {
+  it("creates an observable sequence of operators", (done) => {
     const definitions = [
       { use: fixtures("count-to-three") },
       { use: fixtures("add-10") },
@@ -20,7 +20,7 @@ describe(localNameOf(__filename), () => {
     expect.assertions(expected.length);
 
     createOperators({ definitions }).subscribe(
-      value => {
+      (value) => {
         expect(value).toEqual(expected.shift());
       },
       done,
@@ -28,7 +28,7 @@ describe(localNameOf(__filename), () => {
     );
   });
 
-  it("initiates the observable sequence with an `undefined` value", done => {
+  it("initiates the observable sequence with an `undefined` value", (done) => {
     const definitions = [{ use: fixtures("async-resolve-identity") }];
 
     // The first operator in the sequence receives a undefined value.
@@ -37,7 +37,7 @@ describe(localNameOf(__filename), () => {
     expect.assertions(expected.length);
 
     createOperators({ definitions }).subscribe(
-      value => {
+      (value) => {
         expect(value).toEqual(expected.shift());
       },
       done,

@@ -26,7 +26,7 @@ describe(localNameOf(__filename), () => {
     expect(operatorA).not.toBe(operatorB);
   });
 
-  it("provides operator factory default empty params", done => {
+  it("provides operator factory default empty params", (done) => {
     // The definition provides no parameters to the operator. The fixture
     // will resolve with the argument provided to the factory.
     const definition = {
@@ -38,10 +38,10 @@ describe(localNameOf(__filename), () => {
 
     of(value)
       .pipe(operator)
-      .subscribe(actual => expect(actual).toEqual(expected), done.fail, done);
+      .subscribe((actual) => expect(actual).toEqual(expected), done.fail, done);
   });
 
-  it("is immune to params changes after creating operator", done => {
+  it("is immune to params changes after creating operator", (done) => {
     const params = { a: true, b: { c: {}, d: {} } };
     const expected = { a: true, b: { c: {}, d: {} } };
     const definition = { use: fixtures("promise-resolve-identity"), params };
@@ -62,13 +62,13 @@ describe(localNameOf(__filename), () => {
     of(undefined)
       .pipe(operator)
       .subscribe(
-        actual => expect(actual.params).toEqual(expected),
+        (actual) => expect(actual.params).toEqual(expected),
         done.fail,
         done
       );
   });
 
-  it("provides the operator with deep copy of params", done => {
+  it("provides the operator with deep copy of params", (done) => {
     const params = { a: true, b: { c: {}, d: {} } };
     const definition = { use: fixtures("promise-resolve-identity"), params };
     const operator = createOperator({ definition });
@@ -76,7 +76,7 @@ describe(localNameOf(__filename), () => {
     of(undefined)
       .pipe(operator)
       .subscribe(
-        actual => {
+        (actual) => {
           // Equivalent value not identity.
           expect(actual.params).not.toBe(params);
           expect(actual.params).toEqual(params);
@@ -86,7 +86,7 @@ describe(localNameOf(__filename), () => {
       );
   });
 
-  it("provides operators with an immutable params object", done => {
+  it("provides operators with an immutable params object", (done) => {
     const params = { evil: false };
     const expected = { evil: false };
     const definition = {
@@ -98,13 +98,13 @@ describe(localNameOf(__filename), () => {
     of(undefined)
       .pipe(operator)
       .subscribe(
-        actual => expect(actual.params).toEqual(expected),
+        (actual) => expect(actual.params).toEqual(expected),
         done.fail,
         done
       );
   });
 
-  it("provides operators with an immmutable value object", done => {
+  it("provides operators with an immmutable value object", (done) => {
     const value = { evil: false };
     const expected = { evil: false };
     const definition = {
@@ -114,10 +114,10 @@ describe(localNameOf(__filename), () => {
 
     of(value)
       .pipe(operator)
-      .subscribe(actual => expect(actual).toEqual(expected), done.fail, done);
+      .subscribe((actual) => expect(actual).toEqual(expected), done.fail, done);
   });
 
-  it("provides the operator with an immutable argument object", done => {
+  it("provides the operator with an immutable argument object", (done) => {
     const value = undefined;
     const params = {};
     const expected = { value, params };
@@ -129,10 +129,10 @@ describe(localNameOf(__filename), () => {
 
     of(value)
       .pipe(operator)
-      .subscribe(actual => expect(actual).toEqual(expected), done.fail, done);
+      .subscribe((actual) => expect(actual).toEqual(expected), done.fail, done);
   });
 
-  it("can create an emitter", done => {
+  it("can create an emitter", (done) => {
     const spy = jest.fn();
     const interval = 100;
     const definition = { use: fixtures("interval"), params: { interval } };
@@ -145,7 +145,7 @@ describe(localNameOf(__filename), () => {
     of(undefined)
       .pipe(operator, take(3))
       .subscribe(
-        arg => {
+        (arg) => {
           spy(arg);
           jest.advanceTimersByTime(interval);
         },
@@ -159,7 +159,7 @@ describe(localNameOf(__filename), () => {
     jest.advanceTimersByTime(interval);
   });
 
-  it("can create an operator that emits multiple values before completing", done => {
+  it("can create an operator that emits multiple values before completing", (done) => {
     const spy = jest.fn();
     const definition = {
       use: fixtures("string-split"),
@@ -176,7 +176,7 @@ describe(localNameOf(__filename), () => {
       });
   });
 
-  it("can chain operators that emit multiple values", done => {
+  it("can chain operators that emit multiple values", (done) => {
     const spy = jest.fn();
 
     of("a,b")
@@ -197,37 +197,37 @@ describe(localNameOf(__filename), () => {
       });
   });
 
-  it("forwards a Promise operator's return value", done => {
+  it("forwards a Promise operator's return value", (done) => {
     const definition = { use: fixtures("promise-resolve") };
     const operator = createOperator({ definition });
     const value = 42;
 
     of(value)
       .pipe(operator)
-      .subscribe(actual => expect(actual).toBe(value), done.fail, done);
+      .subscribe((actual) => expect(actual).toBe(value), done.fail, done);
   });
 
-  it("forwards an async/await operator's return value", done => {
+  it("forwards an async/await operator's return value", (done) => {
     const definition = { use: fixtures("async-await-resolve") };
     const operator = createOperator({ definition });
     const value = 42;
 
     of(value)
       .pipe(operator)
-      .subscribe(actual => expect(actual).toBe(value), done.fail, done);
+      .subscribe((actual) => expect(actual).toBe(value), done.fail, done);
   });
 
-  it("forwards an Observable operator's return value", done => {
+  it("forwards an Observable operator's return value", (done) => {
     const definition = { use: fixtures("observable-next") };
     const operator = createOperator({ definition });
     const value = 42;
 
     of(value)
       .pipe(operator)
-      .subscribe(actual => expect(actual).toBe(value), done.fail, done);
+      .subscribe((actual) => expect(actual).toBe(value), done.fail, done);
   });
 
-  it("swallows `empty()` return values from operators", done => {
+  it("swallows `empty()` return values from operators", (done) => {
     const definition = { use: fixtures("promise-resolve-if-even-else-empty") };
     const operator = createOperator({ definition });
     const spy = jest.fn();
@@ -251,7 +251,7 @@ describe(localNameOf(__filename), () => {
     );
   });
 
-  it("can continue without retry when a Promise operator rejects", done => {
+  it("can continue without retry when a Promise operator rejects", (done) => {
     const definition = {
       use: fixtures("promise-resolve-if-even-else-reject"),
       continueOnError: true,
@@ -269,7 +269,7 @@ describe(localNameOf(__filename), () => {
       });
   });
 
-  it("can continue when an Observable operator errors", done => {
+  it("can continue when an Observable operator errors", (done) => {
     const definition = {
       use: fixtures("observable-next-if-even-else-error"),
       continueOnError: true,
@@ -287,27 +287,27 @@ describe(localNameOf(__filename), () => {
       });
   });
 
-  it("errors by default when an async operator throws", done => {
+  it("errors by default when an async operator throws", (done) => {
     const definition = { use: fixtures("async-await-throw") };
     const operator = createOperator({ definition });
 
     // The operator will always throw.
     of("meaning of life")
       .pipe(operator)
-      .subscribe(done.fail, error => done());
+      .subscribe(done.fail, (error) => done());
   });
 
-  it("errors by default when a promise operator rejects", done => {
+  it("errors by default when a promise operator rejects", (done) => {
     const definition = { use: fixtures("promise-resolve-if-even-else-reject") };
     const operator = createOperator({ definition });
 
     // The operator will reject the non-even value.
     of("meaning of life")
       .pipe(operator)
-      .subscribe(done.fail, error => done());
+      .subscribe(done.fail, (error) => done());
   });
 
-  it("errors if retry fails", done => {
+  it("errors if retry fails", (done) => {
     // Test with a retryWait of 0 to verify that a wait >= 0 is accepted.
     const spyPromiseResolveIfEvenElseReject = fixtures(
       "spy-promise-resolve-if-even-else-reject"
@@ -328,7 +328,7 @@ describe(localNameOf(__filename), () => {
     // twice. Afterwards the operator throw the error.
     of("meaning of life", 42)
       .pipe(operator)
-      .subscribe(spy, error => {
+      .subscribe(spy, (error) => {
         const operatorSpy = require(spyPromiseResolveIfEvenElseReject);
 
         expect(error.message).toEqual(

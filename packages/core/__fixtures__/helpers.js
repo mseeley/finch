@@ -5,7 +5,7 @@ const tmp = require("tmp");
 exports.stabilityThreshold = 500;
 exports.superGenerousStabilityThreshold = exports.stabilityThreshold * 6;
 
-exports.copyToUniqueTmpDir = async pathnames => {
+exports.copyToUniqueTmpDir = async (pathnames) => {
   if (!Array.isArray(pathnames)) {
     throw new Error("`copyToUniqueTmpDir` requires an pathnames String[]");
   }
@@ -28,7 +28,7 @@ exports.copyToUniqueTmpDir = async pathnames => {
   return destinations;
 };
 
-exports.once = fn => {
+exports.once = (fn) => {
   let hasExecuted = false;
 
   return async (...args) => {
@@ -39,12 +39,12 @@ exports.once = fn => {
   };
 };
 
-exports.touch = async filename => {
+exports.touch = async (filename) => {
   const encoding = "utf8";
 
   await fs.writeFile(filename, await fs.readFile(filename, encoding), encoding);
 };
 
 exports.wait = async (milliseconds = exports.stabilityThreshold * 1.5) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };

@@ -8,9 +8,9 @@ const localName = `[${localNameOf(__filename)}]`;
 const yamlOptions = { json: true, schema: yaml.JSON_SCHEMA };
 
 const parsers = {
-  ".json": contents => JSON.parse(contents),
-  ".yml": contents => yaml.safeLoad(contents, yamlOptions),
-  ".yaml": contents => yaml.safeLoad(contents, yamlOptions),
+  ".json": (contents) => JSON.parse(contents),
+  ".yml": (contents) => yaml.safeLoad(contents, yamlOptions),
+  ".yaml": (contents) => yaml.safeLoad(contents, yamlOptions),
 };
 
 module.exports = async function readJSON(options) {

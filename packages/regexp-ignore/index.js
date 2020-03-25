@@ -3,7 +3,7 @@ const { EMPTY, toRegExp } = require("@finch/core");
 module.exports = async ({ value, params }) => {
   const all = params.all || [];
   const any = params.any || [];
-  const test = pattern_ => toRegExp(pattern_).test(value);
+  const test = (pattern_) => toRegExp(pattern_).test(value);
 
   let matches = false;
 

@@ -48,7 +48,7 @@ async function updateReadme({ isPrivate, packageDescription, packageName }) {
   await writeReadme({ packageName, data });
 }
 
-module.exports = async settings => {
+module.exports = async (settings) => {
   await copyTemplate(settings);
   await updatePackageJson(settings);
   await updateReadme(settings);

@@ -7,7 +7,7 @@ describe(localNameOf(__filename), () => {
   const cyclic = {};
   cyclic.a = cyclic;
 
-  test.each([3, null, undefined])("follows JSON semantics for %s", value => {
+  test.each([3, null, undefined])("follows JSON semantics for %s", (value) => {
     return expect(stringify({ value, params: {} })).resolves.toBe(
       JSON.stringify(value)
     );

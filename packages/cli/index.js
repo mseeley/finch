@@ -7,7 +7,7 @@ const json = require("./package.json");
 const localName = `[${localNameOf(__filename)}]`;
 
 function execute(dependency) {
-  return async argv => {
+  return async (argv) => {
     try {
       const { debug, stabilityThreshold, ...options } = argv;
       const fields = {
@@ -60,7 +60,7 @@ require("yargs")
   .command(
     "start [pathname]",
     "Start Finch streams found at <pathname>.",
-    yargs => {
+    (yargs) => {
       yargs
         .positional("pathname", {
           coerce: path.resolve,
