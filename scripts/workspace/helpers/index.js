@@ -3,7 +3,7 @@ const fs = require("fs-extra");
 
 const files = fs.readdirSync(__dirname);
 
-files.forEach(file => {
+files.forEach((file) => {
   const extension = path.extname(file);
   const basename = path.basename(file, extension);
 

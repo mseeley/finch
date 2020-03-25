@@ -17,30 +17,30 @@ function forkObservable(options, ioc = {}) {
     (process.env.NODE_ENV === "test" && ioc.fork) ||
     require("child_process").fork;
 
-  return new Observable(observer => {
+  return new Observable((observer) => {
     let subscriber;
     let subprocess;
 
     try {
       subprocess = fork(__filename, [SECRET], options.options);
 
-      const messages$ = fromEvent(subprocess, "message", event => event);
-      const errors$ = fromEvent(subprocess, "error", event => event);
-      const exits$ = fromEvent(subprocess, "exit", event => event);
+      const messages$ = fromEvent(subprocess, "message", (event) => event);
+      const errors$ = fromEvent(subprocess, "error", (event) => event);
+      const exits$ = fromEvent(subprocess, "exit", (event) => event);
 
       const nexts$ = messages$.pipe(
-        filter(message => message.type === NEXT),
-        map(message => message.data)
+        filter((message) => message.type === NEXT),
+        map((message) => message.data)
       );
 
       const observableErrors$ = messages$.pipe(
-        filter(message => message.type === ERROR),
-        map(message => new Error(message.data.message))
+        filter((message) => message.type === ERROR),
+        map((message) => new Error(message.data.message))
       );
 
       const unexpectedExitErrors$ = exits$.pipe(
-        filter(code => code !== GRACEFUL_EXIT),
-        map(code => new Error(`Error: Fatal error in process, code: ${code}`))
+        filter((code) => code !== GRACEFUL_EXIT),
+        map((code) => new Error(`Error: Fatal error in process, code: ${code}`))
       );
 
       // Error events received from node, errors caught from the factory's
@@ -49,7 +49,7 @@ function forkObservable(options, ioc = {}) {
         errors$,
         observableErrors$,
         unexpectedExitErrors$
-      ).pipe(switchMap(error => throwError(error)));
+      ).pipe(switchMap((error) => throwError(error)));
 
       // Race thrown errors and exits, in this order, so that a non-graceful
       // exit results in a thrown error.
@@ -87,21 +87,23 @@ function forkObservable(options, ioc = {}) {
 }
 
 function createWorker() {
-  const setup$ = fromEvent(process, "message", event => event).pipe(
-    filter(message => message.type === SETUP),
+  const setup$ = fromEvent(process, "message", (event) => event).pipe(
+    filter((message) => message.type === SETUP),
     first()
   );
 
   setup$
     .pipe(
-      switchMap(message => require(message.data.factory)(...message.data.args)),
+      switchMap((message) =>
+        require(message.data.factory)(...message.data.args)
+      ),
       takeUntil(fromEvent(process, "disconnect"))
     )
     .subscribe(
-      value => {
+      (value) => {
         process.send({ type: NEXT, data: value });
       },
-      error => {
+      (error) => {
         const err = error || new Error("Unknown error in subprocess");
 
         // The master observable will disconnect from the subprocess after

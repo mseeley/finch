@@ -51,7 +51,7 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("when resolving stream definitions", () => {
-    it("resolves stream definition before executing", done => {
+    it("resolves stream definition before executing", (done) => {
       const definitions = [
         { use: "@finch/values", params: { values: [0, 1, 2] } },
         // Use relative paths for fixtures so that `resolveFrom` is exercised.
@@ -69,7 +69,7 @@ describe(localNameOf(__filename), () => {
           take(1)
         )
         .subscribe(
-          actual => {
+          (actual) => {
             expect(actual).toEqual([0, -10, -20]);
           },
           done.fail,
@@ -77,7 +77,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("re-resolves stream definition after dependency change while watching", async done => {
+    it("re-resolves stream definition after dependency change while watching", async (done) => {
       // Two operators are copied to the tmp dir.
       const [multiplyBy10, invert] = await copyToUniqueTmpDir([
         fixtures("multiply-by-10.js"),
@@ -109,7 +109,7 @@ describe(localNameOf(__filename), () => {
       subscriber = createStream({ definitions, shouldWatch: true })
         .pipe(take(assertions))
         .subscribe(
-          value => {
+          (value) => {
             expect(value).toEqual(expected.shift());
             rewriteIncludeOnce();
           },
@@ -118,12 +118,12 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("errors when stream definition resolution fails", done => {
+    it("errors when stream definition resolution fails", (done) => {
       // Stream resolution can fail for a variety of reasons. This failure is
       // do to the operator definition not existing.
       subscriber = createStream({
         definitions: [{ use: relative("i-do-not-exist") }],
-      }).subscribe(null, error => {
+      }).subscribe(null, (error) => {
         expect(error).toMatchInlineSnapshot(
           `[Error: [core/resolveStreamDefinition]: {"use":"./__fixtures__/createStream/i-do-not-exist"} is invalid: cannot find ./__fixtures__/createStream/i-do-not-exist]`
         );
@@ -131,7 +131,7 @@ describe(localNameOf(__filename), () => {
       });
     });
 
-    it("errors when stream definition resolution fails after a dependency changes while watching", async done => {
+    it("errors when stream definition resolution fails after a dependency changes while watching", async (done) => {
       // Stream re-resolution fails. When the include dependency is updated in a
       // way that fails validation.
       const [commonOperators] = await copyToUniqueTmpDir([
@@ -156,12 +156,12 @@ describe(localNameOf(__filename), () => {
       expect.assertions(2);
 
       subscriber = createStream({ definitions, shouldWatch: true }).subscribe(
-        value => {
+        (value) => {
           expect(value).toBe(-10);
 
           makeCommonOperatorsInvalidOnce();
         },
-        error => {
+        (error) => {
           expect(error).toMatchInlineSnapshot(
             `[Error: [core/resolveStreamDefinition]: null is invalid: {"pointer":"","errors":["should be object"]}]`
           );
@@ -173,7 +173,7 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("when running stream", () => {
-    it("completes without emitting values when there are no definitions", done => {
+    it("completes without emitting values when there are no definitions", (done) => {
       const definitions = [];
 
       subscriber = createStream({ definitions }).subscribe(
@@ -183,7 +183,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("completes without emitting values when dependencies resolve to no definitions", done => {
+    it("completes without emitting values when dependencies resolve to no definitions", (done) => {
       const definitions = [{ include: fixtures("empty.json") }];
 
       subscriber = createStream({ definitions }).subscribe(
@@ -193,7 +193,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("emits no values and waits for dependency change when stream has no definitions but has dependencies and watching", async done => {
+    it("emits no values and waits for dependency change when stream has no definitions but has dependencies and watching", async (done) => {
       const [emptyJSON] = await copyToUniqueTmpDir([
         fixtures("empty.json"),
         fixtures("resolve.js"),
@@ -218,13 +218,13 @@ describe(localNameOf(__filename), () => {
       ]);
     });
 
-    it("runs stream in a separate process", done => {
+    it("runs stream in a separate process", (done) => {
       const definitions = [{ use: fixtures("resolve-process-pid") }];
 
       expect.assertions(2);
 
       subscriber = createStream({ definitions }).subscribe(
-        pid => {
+        (pid) => {
           expect(pid).toBeGreaterThan(0);
           expect(pid).not.toBe(process.pid);
         },
@@ -233,7 +233,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("process.env changes ignored by running stream", async done => {
+    it("process.env changes ignored by running stream", async (done) => {
       const now = String(Date.now());
       const name = `FINCH_${now}`;
 
@@ -256,7 +256,7 @@ describe(localNameOf(__filename), () => {
       subscriber = createStream({ definitions })
         .pipe(take(assertions))
         .subscribe(
-          envValue => {
+          (envValue) => {
             expect(envValue).toBe(now);
             process.env[name] = String(Date.now());
           },
@@ -265,7 +265,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("restarting a stream forwards current process.env when watching", async done => {
+    it("restarting a stream forwards current process.env when watching", async (done) => {
       const [resolveProcessEnv] = await copyToUniqueTmpDir([
         fixtures("resolve-process-env.js"),
       ]);
@@ -292,7 +292,7 @@ describe(localNameOf(__filename), () => {
       subscriber = createStream({ definitions, shouldWatch: true })
         .pipe(take(assertions))
         .subscribe(
-          envValue => {
+          (envValue) => {
             expect(envValue).toBe(expected);
 
             expected = String(Date.now());
@@ -305,7 +305,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("does not refresh stream when dependency changes and not watching", async done => {
+    it("does not refresh stream when dependency changes and not watching", async (done) => {
       const [invert] = await copyToUniqueTmpDir([fixtures("invert.js")]);
 
       const touchInvertOnce = once(() => {
@@ -327,7 +327,7 @@ describe(localNameOf(__filename), () => {
       subscriber = createStream({ definitions })
         .pipe(take(assertions))
         .subscribe(
-          value => {
+          (value) => {
             expect(value).toEqual(expected.shift());
 
             touchInvertOnce();
@@ -337,7 +337,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("stream completes when not watching", async done => {
+    it("stream completes when not watching", async (done) => {
       const values = [0, 1, 2];
       const definitions = [{ use: "@finch/values", params: { values } }];
       const assertions = values.length;
@@ -346,7 +346,7 @@ describe(localNameOf(__filename), () => {
 
       // This stream completes on its own after yielding all values.
       subscriber = createStream({ definitions }).subscribe(
-        value => {
+        (value) => {
           expect(value).toBe(values.shift());
         },
         done.fail,
@@ -354,7 +354,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("stream completes when watching if there are no dependencies", async done => {
+    it("stream completes when watching if there are no dependencies", async (done) => {
       const values = ["Hello World"];
       const definitions = [{ use: "@finch/values", params: { values } }];
 
@@ -364,7 +364,7 @@ describe(localNameOf(__filename), () => {
       expect.assertions(values.length);
 
       subscriber = createStream({ definitions, shouldWatch: true }).subscribe(
-        v => {
+        (v) => {
           expect(v).toBe(values[0]);
         },
         done.fail,
@@ -372,7 +372,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("does not complete the stream when watching and there are depdencies", async done => {
+    it("does not complete the stream when watching and there are depdencies", async (done) => {
       const values = [0, 1, 2];
       const expected = [0, -1, -2];
       const definitions = [
@@ -386,7 +386,7 @@ describe(localNameOf(__filename), () => {
 
       // This stream completes on its own after yielding all values.
       subscriber = createStream({ definitions, shouldWatch: true }).subscribe(
-        value => {
+        (value) => {
           expect(value).toBe(expected.shift());
 
           if (!expected.length) {
@@ -402,7 +402,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("re-runs completed stream after dependency changes while watching", async done => {
+    it("re-runs completed stream after dependency changes while watching", async (done) => {
       const [invert] = await copyToUniqueTmpDir([fixtures("invert.js")]);
       const touchInvertOnce = once(() => touch(invert));
 
@@ -424,7 +424,7 @@ describe(localNameOf(__filename), () => {
       subscriber = createStream({ definitions, shouldWatch: true })
         .pipe(take(assertions))
         .subscribe(
-          actual => {
+          (actual) => {
             // Expect to receive the inverted value provided to `of.js`.
             expect(actual).toBe(-expected);
 
@@ -440,7 +440,7 @@ describe(localNameOf(__filename), () => {
     // for both files after they're restored. Polling and massively increasing
     // the delays did not help. Best no remove `.ignore` when working on
     // createStream specs.
-    it.skip("re-runs stream after removed dependencies are restored while watching", async done => {
+    it.skip("re-runs stream after removed dependencies are restored while watching", async (done) => {
       const [invert, multiplyBy10] = await copyToUniqueTmpDir([
         fixtures("invert.js"),
         fixtures("multiply-by-10.js"),
@@ -478,7 +478,7 @@ describe(localNameOf(__filename), () => {
       subscriber = createStream({ definitions, shouldWatch: true })
         .pipe(take(assertions))
         .subscribe(
-          actual => {
+          (actual) => {
             expect(actual).toBe(-10);
 
             // Delete both dependencies then restore both dependencies. The
@@ -493,20 +493,23 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("when recovering from stream error", () => {
-    it("does not catch stream errors by default", done => {
+    it("does not catch stream errors by default", (done) => {
       // The reject operator immediately returns a promise which rejects with an
       // Error presenting the `message`. The stream's error handler is
       // presented the error.
       const message = String(Date.now());
       const definitions = [{ use: fixtures("reject.js"), params: { message } }];
 
-      subscriber = createStream({ definitions }).subscribe(done.fail, error => {
-        expect(error.message).toBe(`Error: ${message}`);
-        done();
-      });
+      subscriber = createStream({ definitions }).subscribe(
+        done.fail,
+        (error) => {
+          expect(error.message).toBe(`Error: ${message}`);
+          done();
+        }
+      );
     });
 
-    it("catches stream error when watching then re-runs stream after error after first stream dependency change", async done => {
+    it("catches stream error when watching then re-runs stream after error after first stream dependency change", async (done) => {
       const [reject, resolve] = await copyToUniqueTmpDir([
         fixtures("reject.js"),
         fixtures("resolve.js"),
@@ -532,7 +535,7 @@ describe(localNameOf(__filename), () => {
       expect.assertions(1);
 
       subscriber = createStream({ definitions, shouldWatch: true }).subscribe(
-        value => {
+        (value) => {
           expect(value).toBe(message);
           done();
         },

@@ -14,8 +14,8 @@ module.exports = async function start(argv) {
   }
 
   createStreamFromPath(options).subscribe(
-    value => console.log(localName, value),
-    error => console.log(localName, emoji.get("x"), error),
+    (value) => console.log(localName, value),
+    (error) => console.log(localName, emoji.get("x"), error),
     () => console.log(localName, emoji.get("bird"), "Done")
   );
 };

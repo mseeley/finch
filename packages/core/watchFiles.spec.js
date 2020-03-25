@@ -19,14 +19,14 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("when validating input options", () => {
-    it("requires one or more absolute paths", done => {
+    it("requires one or more absolute paths", (done) => {
       const observables = [
         watchFiles({ pathnames: 42 }),
         watchFiles({ pathnames: [] }),
         watchFiles({ pathnames: ["/", "./"] }),
-      ].map(observable =>
+      ].map((observable) =>
         observable.pipe(
-          catchError(error => {
+          catchError((error) => {
             const message = "One or more absolute paths are required";
 
             expect(error.message).toEqual(expect.stringContaining(message));
@@ -44,7 +44,7 @@ describe(localNameOf(__filename), () => {
         });
     });
 
-    it("requires glob base exists", done => {
+    it("requires glob base exists", (done) => {
       const dirname = tmp.dirSync().name;
       const invalidDirname = path.join(dirname, "i-do-not-exist");
       const pathnames = [path.join(invalidDirname, "*.foo")];
@@ -53,7 +53,7 @@ describe(localNameOf(__filename), () => {
       // exist.
       expect(fs.existsSync(dirname)).toBe(true);
 
-      watchFiles({ pathnames }).subscribe(null, error => {
+      watchFiles({ pathnames }).subscribe(null, (error) => {
         expect(error.message).toEqual(
           expect.stringContaining(`Path must exist: ${invalidDirname}`)
         );
@@ -61,14 +61,14 @@ describe(localNameOf(__filename), () => {
       });
     });
 
-    it("requires non-glob pathname exists", done => {
+    it("requires non-glob pathname exists", (done) => {
       // Generate a file name that has no backing file.
       const invalidFilename = tmp.tmpNameSync();
       const pathnames = [invalidFilename];
 
       expect(fs.existsSync(invalidFilename)).toBe(false);
 
-      watchFiles({ pathnames }).subscribe(null, error => {
+      watchFiles({ pathnames }).subscribe(null, (error) => {
         expect(error.message).toEqual(
           expect.stringContaining(`Path must exist: ${invalidFilename}`)
         );
@@ -201,7 +201,7 @@ describe(localNameOf(__filename), () => {
       process.env = env;
     });
 
-    it("ignores dot files and dot directories", done => {
+    it("ignores dot files and dot directories", (done) => {
       const dotFile = path.join(dir, ".fooshrc");
       const dotDir = path.join(dir, ".dotfiles");
       const regularFile = path.join(dotDir, "regularFile.txt");
@@ -222,7 +222,7 @@ describe(localNameOf(__filename), () => {
       watchFiles({ pathnames, filterReady: true })
         .pipe(take(1))
         .subscribe(
-          watched => {
+          (watched) => {
             expect(watched.event).toBe("ready");
           },
           null,
@@ -230,7 +230,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("ignores node_modules directories", done => {
+    it("ignores node_modules directories", (done) => {
       const ignoredDir = path.join(dir, "node_modules");
       const allowedFile = path.join(dir, "node_modules.txt");
       const ignoredFile = path.join(ignoredDir, "node_modules.txt");
@@ -246,9 +246,9 @@ describe(localNameOf(__filename), () => {
       const pathnames = [allowedFile, ignoredFile];
 
       watchFiles({ pathnames, filterReady: true })
-        .pipe(takeWhile(watched => watched.event !== "ready"))
+        .pipe(takeWhile((watched) => watched.event !== "ready"))
         .subscribe(
-          watched => {
+          (watched) => {
             expect(watched.filename).toBe(allowedFile);
           },
           null,
@@ -272,9 +272,9 @@ describe(localNameOf(__filename), () => {
         const pathnames = [allowedFile];
 
         watchFiles({ pathnames, filterReady: true })
-          .pipe(takeWhile(watched => watched.event !== "ready"))
+          .pipe(takeWhile((watched) => watched.event !== "ready"))
           .subscribe(
-            watched => {
+            (watched) => {
               expect(watched.filename).toBe(allowedFile);
             },
             null,
@@ -299,9 +299,9 @@ describe(localNameOf(__filename), () => {
         const pathnames = [allowedFile, ignoredFile];
 
         watchFiles({ pathnames, filterReady: true })
-          .pipe(takeWhile(watched => watched.event !== "ready"))
+          .pipe(takeWhile((watched) => watched.event !== "ready"))
           .subscribe(
-            watched => {
+            (watched) => {
               expect(watched.filename).toBe(allowedFile);
             },
             null,
@@ -310,7 +310,7 @@ describe(localNameOf(__filename), () => {
       }
     );
 
-    it("omits `ready` event by default", done => {
+    it("omits `ready` event by default", (done) => {
       const filename = tmp.fileSync({ dir }).name;
       const pathnames = [filename];
 
@@ -318,7 +318,7 @@ describe(localNameOf(__filename), () => {
       watchFiles({ pathnames })
         .pipe(take(1))
         .subscribe(
-          watched => {
+          (watched) => {
             expect(watched.event).toBe("add");
             expect(watched.filename).toBe(filename);
           },
@@ -327,7 +327,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("emits add, change, unlink by default", done => {
+    it("emits add, change, unlink by default", (done) => {
       const extname = ".foo";
       const pathnames = [path.join(dir, `*${extname}`)];
 
@@ -341,7 +341,7 @@ describe(localNameOf(__filename), () => {
       watchFiles({ pathnames, filterReady: true })
         .pipe(take(events.length))
         .subscribe(
-          watched => {
+          (watched) => {
             expect(watched.event).toBe(events.shift());
 
             switch (watched.event) {
@@ -361,7 +361,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("emits initial adds by default", done => {
+    it("emits initial adds by default", (done) => {
       const filename = tmp.fileSync({ dir }).name;
       const pathnames = [filename];
 
@@ -370,7 +370,7 @@ describe(localNameOf(__filename), () => {
       watchFiles({ pathnames })
         .pipe(take(1))
         .subscribe(
-          watched => {
+          (watched) => {
             // Initial add events are emitted before a ready event.
             expect(watched.event).toBe("add");
             expect(watched.filename).toBe(filename);
@@ -380,7 +380,7 @@ describe(localNameOf(__filename), () => {
         );
     });
 
-    it("optionally omits initial adds", done => {
+    it("optionally omits initial adds", (done) => {
       const filename = tmp.fileSync({ dir }).name;
       const pathnames = [filename];
 
@@ -390,7 +390,7 @@ describe(localNameOf(__filename), () => {
       watchFiles({ pathnames, filterReady: true, ignoreInitial: true })
         .pipe(take(1))
         .subscribe(
-          watched => {
+          (watched) => {
             expect(watched.event).toBe("ready");
           },
           null,
@@ -420,7 +420,7 @@ describe(localNameOf(__filename), () => {
       const testSubject = watchFiles({
         pathnames,
         [filterName]: true,
-      }).subscribe(watched => {
+      }).subscribe((watched) => {
         expect(watched.event).toBe(eventName);
         expect(watched.filename).toBe(filename);
       });
@@ -432,7 +432,7 @@ describe(localNameOf(__filename), () => {
       watchFiles({ pathnames, filterReady: true })
         .pipe(take(events.length))
         .subscribe(
-          watched => {
+          (watched) => {
             expect(watched.event).toBe(events.shift());
 
             switch (watched.event) {
@@ -445,12 +445,12 @@ describe(localNameOf(__filename), () => {
 
                 break;
               case "add":
-                fs.writeFile(filename, "Hello World", err => {
+                fs.writeFile(filename, "Hello World", (err) => {
                   if (err) done();
                 });
                 break;
               case "change":
-                fs.unlink(filename, err => {
+                fs.unlink(filename, (err) => {
                   if (err) done();
                 });
                 break;

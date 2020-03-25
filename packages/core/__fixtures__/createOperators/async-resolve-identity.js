@@ -1,1 +1,1 @@
-module.exports = async argument => argument;
+module.exports = async (argument) => argument;

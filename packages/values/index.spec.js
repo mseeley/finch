@@ -73,7 +73,7 @@ describe(localNameOf(__filename), () => {
     (input, expected, done) => {
       subscriber = values({ params: { values: input } }).subscribe(
         done.fail,
-        error => {
+        (error) => {
           expect(error.message).toEqual(
             expect.stringMatching("is not iterable")
           );
@@ -83,7 +83,7 @@ describe(localNameOf(__filename), () => {
     }
   );
 
-  it("runs once by default", done => {
+  it("runs once by default", (done) => {
     const spy = jest.fn(() => {});
     const expected = [["4"], ["2"]];
 
@@ -97,7 +97,7 @@ describe(localNameOf(__filename), () => {
     );
   });
 
-  it("runs N times", done => {
+  it("runs N times", (done) => {
     const spy = jest.fn(() => {});
     const expected = [["4"], ["2"], ["4"], ["2"], ["4"], ["2"]];
 
@@ -111,7 +111,7 @@ describe(localNameOf(__filename), () => {
     );
   });
 
-  it("runs indefinitely", done => {
+  it("runs indefinitely", (done) => {
     const spy = jest.fn(() => {});
     const expected = [["4"], ["2"], ["4"], ["2"], ["4"]];
     const taken = expected.length;

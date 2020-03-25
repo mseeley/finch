@@ -4,7 +4,7 @@ const { Observable } = require("rxjs");
 module.exports = ({ value, params }) => {
   const { pattern } = params;
 
-  return new Observable(observer => {
+  return new Observable((observer) => {
     try {
       const values = value.split(toRegExp(pattern));
 

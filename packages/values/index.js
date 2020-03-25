@@ -4,9 +4,9 @@ const { delay, expand, mergeMap, repeat } = require("rxjs/operators");
 
 const localName = localNameOf(__filename);
 
-const stepIterator = iterator =>
+const stepIterator = (iterator) =>
   defer(() => of(iterator.next())).pipe(
-    mergeMap(result => (result.done ? EMPTY : of(result.value)))
+    mergeMap((result) => (result.done ? EMPTY : of(result.value)))
   );
 
 module.exports = ({ params }) => {
@@ -32,9 +32,11 @@ module.exports = ({ params }) => {
   const observable =
     delayMilliseconds > 0
       ? defer(() => of(values[Symbol.iterator]())).pipe(
-          mergeMap(iterator =>
+          mergeMap((iterator) =>
             stepIterator(iterator).pipe(
-              expand(v => stepIterator(iterator).pipe(delay(delayMilliseconds)))
+              expand((v) =>
+                stepIterator(iterator).pipe(delay(delayMilliseconds))
+              )
             )
           )
         )

@@ -24,12 +24,12 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("observable factory error handling", () => {
-    it("emits unhandled subprocess factory runtime exception", done => {
+    it("emits unhandled subprocess factory runtime exception", (done) => {
       subscriber = forkObservable({
         factory: fixtures("unhandled-exception-factory"),
       }).subscribe(
         reject,
-        error => {
+        (error) => {
           expect(error && error.message).toBe("Error: Intentional error");
           done();
         },
@@ -37,12 +37,12 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("emits unhandled subprocess factory parsing exception", done => {
+    it("emits unhandled subprocess factory parsing exception", (done) => {
       subscriber = forkObservable({
         factory: fixtures("unhandled-exception-parse"),
       }).subscribe(
         reject,
-        error => {
+        (error) => {
           expect(error && error.message).toBe("Error: Intentional error");
           done();
         },
@@ -50,12 +50,12 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("emits exception when factory cannot be found", done => {
+    it("emits exception when factory cannot be found", (done) => {
       const factory = "i-do-not-exist";
 
       subscriber = forkObservable({ factory }).subscribe(
         reject,
-        error => {
+        (error) => {
           expect(error && error.message).toEqual(
             expect.stringContaining(`Cannot find module '${factory}'`)
           );
@@ -67,7 +67,7 @@ describe(localNameOf(__filename), () => {
   });
 
   describe("subprocess observable behaviors", () => {
-    it("supports observables that never next before complete", done => {
+    it("supports observables that never next before complete", (done) => {
       subscriber = forkObservable({
         factory: fixtures("operator-completes-without-next"),
       }).subscribe(reject, reject, () => {
@@ -78,13 +78,13 @@ describe(localNameOf(__filename), () => {
       });
     });
 
-    it("supports observables that next once then complete", done => {
+    it("supports observables that next once then complete", (done) => {
       let i;
 
       subscriber = forkObservable({
         factory: fixtures("operator-next-once-then-complete"),
       }).subscribe(
-        value => {
+        (value) => {
           i = value;
         },
         reject,
@@ -95,7 +95,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("supports observables that next indefinitely", done => {
+    it("supports observables that next indefinitely", (done) => {
       const taken = 5;
       const spy = jest.fn();
 
@@ -109,12 +109,12 @@ describe(localNameOf(__filename), () => {
         });
     });
 
-    it("supports observables that immediately emit an error", done => {
+    it("supports observables that immediately emit an error", (done) => {
       subscriber = forkObservable({
         factory: fixtures("operator-errors"),
       }).subscribe(
         reject,
-        error => {
+        (error) => {
           expect(error && error.message).toBe("Error: Intentional error");
           done();
         },
@@ -122,7 +122,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("provides args to observable factory", done => {
+    it("provides args to observable factory", (done) => {
       const args = [42, "unicorn", true];
 
       expect.assertions(1);
@@ -131,7 +131,7 @@ describe(localNameOf(__filename), () => {
         factory: fixtures("operator-next-args-then-completes"),
         args,
       }).subscribe(
-        value => {
+        (value) => {
           expect(value).toEqual(args);
         },
         reject,
@@ -139,13 +139,13 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("provides default args to observable factory", done => {
+    it("provides default args to observable factory", (done) => {
       expect.assertions(1);
 
       subscriber = forkObservable({
         factory: fixtures("operator-next-args-then-completes"),
       }).subscribe(
-        value => {
+        (value) => {
           expect(value).toEqual([]);
         },
         reject,
@@ -158,14 +158,14 @@ describe(localNameOf(__filename), () => {
     const key = `FINCH_SPEC_${Date.now()}`;
     const value = "42";
 
-    it("provides process options to subprocess", done => {
+    it("provides process options to subprocess", (done) => {
       subscriber = forkObservable({
         factory: fixtures("operator-next-env-then-completes"),
         // There are more options available. This spec only tests against
         // process.env.
         options: { env: { [key]: value } },
       }).subscribe(
-        result => {
+        (result) => {
           // The operator nexts with the value of process.env. The key/value set
           // above should be included.
           expect(result[key]).toBe(value);
@@ -175,7 +175,7 @@ describe(localNameOf(__filename), () => {
       );
     });
 
-    it("completes the master observable when child exits prematurely", done => {
+    it("completes the master observable when child exits prematurely", (done) => {
       // No need to assert. The test will fail immediately if the observable
       // nexts or errors. It will fail after a delay if the observable never
       // completes causing `done()` to never execute.
@@ -184,13 +184,13 @@ describe(localNameOf(__filename), () => {
       }).subscribe(reject, reject, done);
     });
 
-    it("errors the master observable when child exits with error", done => {
+    it("errors the master observable when child exits with error", (done) => {
       // The test will fail immediately if the observable nexts or errors.
       subscriber = forkObservable({
         factory: fixtures("process-exit-one"),
       }).subscribe(
         reject,
-        error => {
+        (error) => {
           expect(error.message).toBe("Error: Fatal error in process, code: 1");
           done();
         },
@@ -208,7 +208,7 @@ describe(localNameOf(__filename), () => {
       }),
     };
 
-    it("master disconnects from subprocess when it completes before subprocess", done => {
+    it("master disconnects from subprocess when it completes before subprocess", (done) => {
       subscriber = forkObservable(
         { factory: fixtures("operator-next-indefinitely") },
         ioc

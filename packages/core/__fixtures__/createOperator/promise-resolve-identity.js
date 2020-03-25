@@ -1,3 +1,3 @@
-module.exports = argument => {
+module.exports = (argument) => {
   return Promise.resolve(argument);
 };

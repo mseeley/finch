@@ -5,5 +5,5 @@ module.exports = async function findOtherPackagesInScope({
   scope,
 }) {
   const packages = await findPackagesInScope({ scope });
-  return packages.filter(p => p !== packageName);
+  return packages.filter((p) => p !== packageName);
 };

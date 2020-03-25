@@ -10,7 +10,7 @@ const log = require("./log");
 
 const localName = `[${localNameOf(__filename)}]`;
 
-const deepFreezeClone = subject =>
+const deepFreezeClone = (subject) =>
   subject == null ? subject : deepFreeze(cloneDeep(subject));
 
 // See: https://github.com/ReactiveX/rxjs/blob/master/doc/operator-creation.md#operator-as-a-pure-function
@@ -39,9 +39,9 @@ module.exports = function createOperator(options) {
       maxRetries: retryCount,
     });
 
-  return function(source) {
+  return function (source) {
     return source.pipe(
-      mergeMap(value =>
+      mergeMap((value) =>
         defer(() =>
           factory(
             Object.freeze({
@@ -51,8 +51,8 @@ module.exports = function createOperator(options) {
           )
         ).pipe(
           retry$ ? retry$ : identity,
-          mergeMap(v => (v === emptyHelper() ? EMPTY : of(v))),
-          catchError(error => {
+          mergeMap((v) => (v === emptyHelper() ? EMPTY : of(v))),
+          catchError((error) => {
             log.error(localName, "Encountered error:", error);
 
             if (retryCount > 0) {

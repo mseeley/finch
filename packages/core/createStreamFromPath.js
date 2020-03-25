@@ -58,15 +58,15 @@ module.exports = function createStreamFromPath(options = {}, ioc = {}) {
     const streamFiles$ = opts.shouldWatch
       ? watchFiles({ pathnames })
       : watchFiles({ pathnames, filterAdd: true, filterReady: true }).pipe(
-          takeWhile(watched => watched.event !== "ready")
+          takeWhile((watched) => watched.event !== "ready")
         );
 
     // The returned stream will complete when all of its observables complete.
     // Or, when watching, the stream will remain active and await changes to
     // the stream definition files. `streamFiles$` errors should be thrown.
     return streamFiles$.pipe(
-      groupBy(watched => watched.filename),
-      mergeMap(watched =>
+      groupBy((watched) => watched.filename),
+      mergeMap((watched) =>
         watched.pipe(
           switchMap(({ present, filename }) => {
             if (!present) {
@@ -78,7 +78,7 @@ module.exports = function createStreamFromPath(options = {}, ioc = {}) {
             }
 
             const readThenCreate$ = defer(() => readJSON({ filename })).pipe(
-              switchMap(definitions =>
+              switchMap((definitions) =>
                 createStream({
                   definitions,
                   resolveFrom: path.dirname(filename),
@@ -89,7 +89,7 @@ module.exports = function createStreamFromPath(options = {}, ioc = {}) {
             );
 
             return readThenCreate$.pipe(
-              catchError(error => {
+              catchError((error) => {
                 log.error(localName, "Encountered error in:", filename, error);
 
                 // The `createStream` module catches errors thrown by running

@@ -8,7 +8,7 @@ describe(localNameOf(__filename), () => {
   const glue = "unicorn";
   const pattern = new RegExp(glue, "g");
 
-  it("splits an input stream using a pattern", done => {
+  it("splits an input stream using a pattern", (done) => {
     const stream$ = split({
       value: tokens.join(glue),
       params: { pattern: pattern.toString() },
@@ -19,7 +19,7 @@ describe(localNameOf(__filename), () => {
     expect.assertions(tokens.length);
 
     stream$.subscribe(
-      part => {
+      (part) => {
         expect(part).toEqual(tokens[i++]);
       },
       done.fail,
@@ -27,14 +27,14 @@ describe(localNameOf(__filename), () => {
     );
   });
 
-  it("emits an error on bad input", done => {
+  it("emits an error on bad input", (done) => {
     const stream$ = split({
       // 3 cannot be split. The value is not serialized.
       value: 3,
       params: { pattern: pattern.toString() },
     });
 
-    stream$.subscribe(null, error => {
+    stream$.subscribe(null, (error) => {
       expect(error).toBeInstanceOf(TypeError);
       done();
     });

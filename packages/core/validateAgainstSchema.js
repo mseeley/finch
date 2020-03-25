@@ -11,8 +11,8 @@ let ajv;
 
 function consolidateErrors(errors) {
   return errors
-    .filter(error => !KEYWORD_BLACKLIST.includes(error.keyword))
-    .map(error =>
+    .filter((error) => !KEYWORD_BLACKLIST.includes(error.keyword))
+    .map((error) =>
       error.keyword === KEYWORD_ADDITIONAL_PROPERTIES
         ? {
             ...error,
@@ -21,7 +21,7 @@ function consolidateErrors(errors) {
         : error
     )
     .reduce((acc, error) => {
-      let errorAtPointer = acc.find(e => e.pointer === error.dataPath);
+      let errorAtPointer = acc.find((e) => e.pointer === error.dataPath);
 
       if (!errorAtPointer) {
         errorAtPointer = {

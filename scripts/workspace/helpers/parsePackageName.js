@@ -1,6 +1,6 @@
 const parse = require("parse-package-name");
 
-module.exports = async function({ packageName }) {
+module.exports = async function ({ packageName }) {
   const parsed = parse(packageName);
   const parts = parsed.name.split(/\//);
 
