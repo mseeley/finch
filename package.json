@@ -22,7 +22,7 @@
     "fs-extra": "9.0.0",
     "husky": "4.2.3",
     "inquirer": "7.1.0",
-    "jest": "25.1.0",
+    "jest": "25.2.0",
     "lerna": "3.20.2",
     "nodemon": "2.0.2",
     "parse-package-name": "0.1.0",
