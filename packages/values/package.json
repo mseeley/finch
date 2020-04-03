@@ -20,6 +20,6 @@
     "@finch/core": "^1.0.8"
   },
   "dependencies": {
-    "rxjs": "6.5.4"
+    "rxjs": "6.5.5"
   }
 }
