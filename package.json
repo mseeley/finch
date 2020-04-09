@@ -24,7 +24,7 @@
     "inquirer": "7.1.0",
     "jest": "25.3.0",
     "lerna": "3.20.2",
-    "nodemon": "2.0.2",
+    "nodemon": "2.0.3",
     "parse-package-name": "0.1.0",
     "prettier": "2.0.4",
     "validate-npm-package-name": "3.0.0"
