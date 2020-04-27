@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "@finch/values": "^1.0.8",
-    "tmp": "0.1.0"
+    "tmp": "0.2.0"
   }
 }
