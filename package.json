@@ -23,7 +23,7 @@
     "husky": "4.2.5",
     "inquirer": "7.1.0",
     "jest": "26.0.1",
-    "lerna": "3.20.2",
+    "lerna": "3.22.0",
     "nodemon": "2.0.4",
     "parse-package-name": "0.1.0",
     "prettier": "2.0.5",
