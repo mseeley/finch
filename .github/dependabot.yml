@@ -1,0 +1,41 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: acorn
+    versions:
+    - 8.0.5
+    - 8.1.0
+    - 8.1.1
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: "@commitlint/config-lerna-scopes"
+    versions:
+    - 10.0.0
+    - 12.1.0
+  - dependency-name: "@commitlint/cli"
+    versions:
+    - 11.0.0
+    - 12.0.0
+    - 12.0.1
+  - dependency-name: "@commitlint/config-conventional"
+    versions:
+    - 11.0.0
+    - 12.0.0
+    - 12.0.1
+  - dependency-name: commitlint
+    versions:
+    - 11.0.0
+    - 12.0.1
+  - dependency-name: eslint-plugin-prettier
+    versions:
+    - 3.3.1
+  - dependency-name: inquirer
+    versions:
+    - 7.3.3
