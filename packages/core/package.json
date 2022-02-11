@@ -17,7 +17,7 @@
     "url": "https://github.com/mseeley/finch/issues"
   },
   "dependencies": {
-    "ajv": "6.12.2",
+    "ajv": "6.12.3",
     "backoff-rxjs": "6.5.7",
     "chokidar": "3.4.0",
     "deep-freeze-strict": "1.1.1",
